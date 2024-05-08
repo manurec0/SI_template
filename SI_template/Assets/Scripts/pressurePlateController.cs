@@ -6,6 +6,8 @@ public class pressurePlateController : MonoBehaviour
 {
     public GameObject lightPlane;
     public GameObject linkedTile;
+    public AudioSource plateOn;
+    public AudioSource plateOff;
     public bool isOnButton;
     // Start is called before the first frame update
     void Start()
@@ -22,15 +24,20 @@ public class pressurePlateController : MonoBehaviour
             lightPlane.SetActive(true);
         }
         else
+        {
             lightPlane.SetActive(false);
+
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
         isOnButton = true;
+        plateOn.Play();
     }
 
     private void OnTriggerExit(Collider other)
     {
         isOnButton = false;
+        plateOff.Play();
     }
 }
