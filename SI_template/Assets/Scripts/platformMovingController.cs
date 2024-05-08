@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movingPlatformController : MonoBehaviour
+public class platformMovingController : MonoBehaviour
 {
     public float speed = 2.0f; 
     private float startPositionZ= 85.0f; 
