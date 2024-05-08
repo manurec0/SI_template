@@ -9,15 +9,12 @@ public class platformMovingController : MonoBehaviour
     private float endPositionZ= 75.0f; 
     private bool movingForward = true;
 
-    // Start is called before the first frame update
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Mover la plataforma hacia adelante y hacia atrás en el eje Z
         if (movingForward)
         {
             // Mover hacia adelante
@@ -27,7 +24,7 @@ public class platformMovingController : MonoBehaviour
             }
             else
             {
-                movingForward = false; // Cambiar de dirección
+                movingForward = false; 
             }
         }
         else

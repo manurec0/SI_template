@@ -6,23 +6,20 @@ using UnityEngine;
 
 public class platformTransparencyController : MonoBehaviour
 {
-    public GameObject player; // Referencia al jugador
-    public Material targetTileMaterial; // Material de la tile B
-    public float fadeInSpeed = 1f; // Velocidad a la que se incrementará la transparencia
-    public float fadeOutSpeed = 1f; // Velocidad a la que se reducirá la transparencia
-    private bool isPlayerInZone = false; // Flag para controlar el estado del jugador
+    public GameObject player; 
+    public Material targetTileMaterial; 
+    public float fadeInSpeed = 1f; 
+    public float fadeOutSpeed = 1f; 
+    private bool isPlayerInZone = false; 
      void Start(){
         targetTileMaterial.color = new Color(targetTileMaterial.color.r, targetTileMaterial.color.g, targetTileMaterial.color.b, 0);
 
      }
     void Update()
     {
-            Debug.Log("Position - X: " + player.transform.position.x + ", Z: " + player.transform.position.z);
-        // Verificar si el jugador está dentro del área de 1x1 unidades
         if (Mathf.Abs(transform.position.x - player.transform.position.x) <= 5f &&
             Mathf.Abs(transform.position.z - player.transform.position.z) <= 5f)
         {
-            Debug.Log("NOW" + player.transform.position.x + ", Z: " + player.transform.position.z);
 
 
             if (!isPlayerInZone)
