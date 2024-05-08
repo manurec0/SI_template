@@ -63,3 +63,4 @@ crashlytics-build.properties
 /SI_template/[Aa]ssets/[Ss]treamingAssets/aa.meta
 /SI_template/[Aa]ssets/[Ss]treamingAssets/aa/*
 .DS_Store
+SI_template/.vsconfig

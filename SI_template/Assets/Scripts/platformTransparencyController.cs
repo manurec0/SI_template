@@ -7,7 +7,8 @@ using UnityEngine;
 public class platformTransparencyController : MonoBehaviour
 {
     public GameObject player; 
-    public Material targetTileMaterial; 
+    public Material targetTileMaterial;
+    public GameObject tile; 
     public float fadeInSpeed = 1f; 
     public float fadeOutSpeed = 1f; 
     private bool isPlayerInZone = false; 
@@ -17,6 +18,8 @@ public class platformTransparencyController : MonoBehaviour
      }
     void Update()
     {
+        MeshCollider meshCollider = tile.GetComponent<MeshCollider>();
+
         if (Mathf.Abs(transform.position.x - player.transform.position.x) <= 5f &&
             Mathf.Abs(transform.position.z - player.transform.position.z) <= 5f)
         {
@@ -26,6 +29,9 @@ public class platformTransparencyController : MonoBehaviour
             {
                 isPlayerInZone = true;
                 StartCoroutine(FadeIn(targetTileMaterial));
+                meshCollider.enabled = true;
+
+
             }
         }
         else
@@ -34,6 +40,8 @@ public class platformTransparencyController : MonoBehaviour
             {
                 isPlayerInZone = false;
                 StartCoroutine(FadeOut(targetTileMaterial));
+                meshCollider.enabled = false;
+
             }
         }
     }

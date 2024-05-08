@@ -4,40 +4,47 @@ using UnityEngine;
 
 public class platformMovingController : MonoBehaviour
 {
-    public float speed = 2.0f; 
-    private float startPositionZ= 85.0f; 
-    private float endPositionZ= 75.0f; 
+    public float speed = 2.0f;
+    private float startPositionZ = 85.0f;
+    private float endPositionZ = 75.0f;
     private bool movingForward = true;
-
-    void Start()
-    {
-    }
+    public GameObject platform;
+    private bool playerOnButton = false;
 
     void Update()
     {
-        if (movingForward)
+        if (!playerOnButton)
         {
-            // Mover hacia adelante
-            if (transform.position.z > endPositionZ)
+            if (movingForward)
             {
-                transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
+                // Move forward
+                if (platform.transform.position.z > endPositionZ)
+                {
+                    platform.transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
+                }
+                else
+                {
+                    movingForward = false;
+                }
             }
             else
             {
-                movingForward = false; 
+                // Move backward
+                if (platform.transform.position.z < startPositionZ)
+                {
+                    platform.transform.position += new Vector3(0, 0, speed * Time.deltaTime);
+                }
+                else
+                {
+                    movingForward = true;
+                }
             }
         }
-        else
-        {
-            // Mover hacia atrás
-            if (transform.position.z < startPositionZ)
-            {
-                transform.position += new Vector3(0, 0, speed * Time.deltaTime);
-            }
-            else
-            {
-                movingForward = true; 
-            }
-        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        playerOnButton = !playerOnButton;
+        
     }
 }

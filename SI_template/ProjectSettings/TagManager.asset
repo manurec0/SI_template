@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BlendPlane0
   - BlendPlane1
+  - button_lvl_1
   layers:
   - Default
   - TransparentFX
