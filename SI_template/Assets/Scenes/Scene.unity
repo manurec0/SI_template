@@ -2301,7 +2301,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 530153862}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2694,7 +2694,7 @@ MonoBehaviour:
   cameras:
   - {fileID: 342261394}
   - {fileID: 2041817079}
-  enableTracking: 1
+  enableTracking: 0
   numberOfPlayers: 2
   numberOfBaseStations: 4
   screenToWorldPosTracking: 1
@@ -8726,7 +8726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: a5695924205a04fb48cc3bc00f3bf575, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: -2.6
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: a5695924205a04fb48cc3bc00f3bf575, type: 3}
       propertyPath: m_TagString
