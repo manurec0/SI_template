@@ -64,3 +64,8 @@ crashlytics-build.properties
 /SI_template/[Aa]ssets/[Ss]treamingAssets/aa/*
 .DS_Store
 SI_template/.vsconfig
+
+SI_template/InteractiveSystemsTemplate_Data/*
+SI_template/InteractiveSystemsTemplate.exe
+SI_template/UnityCrashHandler64.exe
+SI_template/UnityPlayer.dll
