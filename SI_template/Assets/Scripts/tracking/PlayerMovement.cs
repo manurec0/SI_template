@@ -12,18 +12,24 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI Paco2;
     public GameObject player1;
     public GameObject player2;
-    // Start is called before the first frame update
-    public Quaternion q;
-    public bool manual;
-    void Start()
-    {
 
+
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("outPath"))
+        {
+            //here should be animation of death badabi badaba
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y < -1) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         DebugPos1 = new Vector3(player1.transform.position.x, player1.transform.position.y, player1.transform.position.z);
         DebugPos2 = new Vector3(player2.transform.position.x, player2.transform.position.y, player2.transform.position.z);
         Paco1.text = DebugPos1.ToString();
@@ -41,4 +47,6 @@ public class PlayerMovement : MonoBehaviour
         Matrix4x4 mat = Matrix4x4.Rotate(quat);
         transform.localRotation = quat;
     }
+
+
 }

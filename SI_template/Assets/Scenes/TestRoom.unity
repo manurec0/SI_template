@@ -3480,7 +3480,7 @@ MonoBehaviour:
   cameras:
   - {fileID: 342261394}
   - {fileID: 2041817079}
-  enableTracking: 0
+  enableTracking: 1
   numberOfPlayers: 2
   numberOfBaseStations: 4
   screenToWorldPosTracking: 1
@@ -6057,8 +6057,6 @@ MonoBehaviour:
   Paco2: {fileID: 1088950399}
   player1: {fileID: 1440896347}
   player2: {fileID: 1471923275}
-  q: {x: 0, y: 0, z: 0, w: 0}
-  manual: 0
 --- !u!54 &1440896353
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6595,8 +6593,6 @@ MonoBehaviour:
   Paco2: {fileID: 1088950399}
   player1: {fileID: 1440896347}
   player2: {fileID: 1471923275}
-  q: {x: 0, y: 0, z: 0, w: 0}
-  manual: 0
 --- !u!54 &1471923281
 Rigidbody:
   m_ObjectHideFlags: 0
