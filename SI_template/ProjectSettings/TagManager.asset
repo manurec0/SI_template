@@ -8,6 +8,10 @@ TagManager:
   - BlendPlane1
   - button_lvl_1
   - OnButton
+  - outPath
+  - start
+  - start2
+  - player2
   layers:
   - Default
   - TransparentFX
