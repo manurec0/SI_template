@@ -8,7 +8,6 @@ public class platformMovingController : MonoBehaviour
     private float startPositionZ = 85.0f;
     private float endPositionZ = 75.0f;
     private bool movingForward = true;
-    public GameObject platform;
     private bool playerOnButton = false;
 
     void Update()
@@ -18,9 +17,9 @@ public class platformMovingController : MonoBehaviour
             if (movingForward)
             {
                 // Move forward
-                if (platform.transform.position.z > endPositionZ)
+                if (transform.position.z > endPositionZ)
                 {
-                    platform.transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
+                    transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
                 }
                 else
                 {
@@ -30,9 +29,9 @@ public class platformMovingController : MonoBehaviour
             else
             {
                 // Move backward
-                if (platform.transform.position.z < startPositionZ)
+                if (transform.position.z < startPositionZ)
                 {
-                    platform.transform.position += new Vector3(0, 0, speed * Time.deltaTime);
+                    transform.position += new Vector3(0, 0, speed * Time.deltaTime);
                 }
                 else
                 {

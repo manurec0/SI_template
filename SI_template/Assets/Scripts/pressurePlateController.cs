@@ -5,7 +5,6 @@ using UnityEngine;
 public class pressurePlateController : MonoBehaviour
 {
     public GameObject lightPlane;
-    public GameObject linkedTile;
     public AudioSource plateOn;
     public AudioSource plateOff;
     public bool isOnButton;
