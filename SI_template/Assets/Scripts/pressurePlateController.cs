@@ -18,25 +18,16 @@ public class pressurePlateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isOnButton)
-        {
-            lightPlane.SetActive(true);
-        }
-        else
-        {
-            lightPlane.SetActive(false);
-
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
-        isOnButton = true;
+        lightPlane.SetActive(true);
         plateOn.Play();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        isOnButton = false;
         plateOff.Play();
+        lightPlane.SetActive(false);
     }
 }
