@@ -1,70 +1,62 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public class platformTransparencyController : MonoBehaviour
+public class platformTransparencyController : MonoBehaviour, IPlateAction
 {
-    // public GameObject player; 
-    // public Material targetTileMaterial;
-    // public GameObject tile; 
-    // public float fadeInSpeed = 1f; 
-    // public float fadeOutSpeed = 1f; 
-    // private bool isPlayerInZone = false; 
-    //  void Start(){
-    //     targetTileMaterial.color = new Color(targetTileMaterial.color.r, targetTileMaterial.color.g, targetTileMaterial.color.b, 0);
+    public GameObject crackedObject; 
+    public GameObject hideObject;    
+    public float transitionTime = 2f; 
 
-    //  }
-    // void Update()
-    // {
-    //     MeshCollider meshCollider = tile.GetComponent<MeshCollider>();
+    private IEnumerator currentTransition;
 
-    //     if (Mathf.Abs(transform.position.x - player.transform.position.x) <= 5f &&
-    //         Mathf.Abs(transform.position.z - player.transform.position.z) <= 5f)
-    //     {
+    void Start()
+    {
+        SetOpacity(hideObject, 0);
+        hideObject.SetActive(false);
+
+        SetOpacity(crackedObject, 1);
+    }
+
+    public void ExecuteAction(bool isActive)
+    {
+        if (currentTransition != null)
+        {
+            StopCoroutine(currentTransition);
+        }
+        currentTransition = FadeTransition(isActive);
+        StartCoroutine(currentTransition);
+    }
+
+    private IEnumerator FadeTransition(bool toActive)
+    {
+        Debug.Log("gi");
+        float elapsed = 0;
+        
+        hideObject.SetActive(true);
+
+        while (elapsed < transitionTime)
+        {
+            float factor = elapsed / transitionTime;
+            SetOpacity(hideObject, toActive ? factor : 1 - factor);
+            SetOpacity(crackedObject, toActive ? 1 - factor : factor);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
 
 
-    //         if (!isPlayerInZone)
-    //         {
-    //             isPlayerInZone = true;
-    //             StartCoroutine(FadeIn(targetTileMaterial));
-    //             meshCollider.enabled = true;
+        SetOpacity(hideObject, toActive ? 1 : 0);
+        SetOpacity(crackedObject, toActive ? 0 : 1);
+    }
 
-
-    //         }
-    //     }
-    //     else
-    //     {
-    //         if (isPlayerInZone)
-    //         {
-    //             isPlayerInZone = false;
-    //             StartCoroutine(FadeOut(targetTileMaterial));
-    //             meshCollider.enabled = false;
-
-    //         }
-    //     }
-    // }
-
-    // IEnumerator FadeIn(Material material)
-    // {
-    //     float alpha = material.color.a;
-    //     while (alpha < 1)
-    //     {
-    //         alpha += Time.deltaTime * fadeInSpeed;
-    //         material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
-    //         yield return null;
-    //     }
-    // }
-
-    // IEnumerator FadeOut(Material material)
-    // {
-    //     float alpha = material.color.a;
-    //     while (alpha > 0)
-    //     {
-    //         alpha -= Time.deltaTime * fadeOutSpeed;
-    //         material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
-    //         yield return null;
-    //     }
-    // }
+    private void SetOpacity(GameObject obj, float alpha)
+    {
+        var renderer = obj.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            Color color = renderer.material.color;
+            color.a = alpha;
+            renderer.material.color = color;
+        }
+    }
 }

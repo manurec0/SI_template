@@ -51,6 +51,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5056845476000448608, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 13c3d4521119d3a4ab52391b4e9738ba, type: 2}
+    - target: {fileID: 5287680533463152061, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
+      propertyPath: saturationChange
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7546602904638549940, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -59,5 +67,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueCrackedPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 8482950853781815102, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 13c3d4521119d3a4ab52391b4e9738ba, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ac302c4c135324188a93b93efd474e, type: 3}

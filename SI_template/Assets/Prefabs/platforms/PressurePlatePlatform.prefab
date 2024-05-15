@@ -219,7 +219,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3460870240102174552
+--- !u!114 &8105942888193590741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,22 +231,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb10eb3e2bb6465fbfc5baa48cebf54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionTarget: {fileID: 0}
   lightPlane: {fileID: 4278768954915114461}
-  plateOn: {fileID: 6979034725097828691}
-  plateOff: {fileID: 6319015958632573613}
-  isOnButton: 0
---- !u!114 &7568098950303780727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750752177945791227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7527a002f9df16e4a8f145e3cc58be5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  plateOn: {fileID: 6319015958632573613}
+  plateOff: {fileID: 6979034725097828691}
 --- !u!1 &4278768954915114461
 GameObject:
   m_ObjectHideFlags: 0
