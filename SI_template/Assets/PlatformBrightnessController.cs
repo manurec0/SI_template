@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlatformBrightnessController : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
-    public Color targetColor; // Color objetivo configurable desde el inspector
-    public float transitionDuration = 1f; // Duración de la transición
+    public Color targetColor;
+    public float transitionDuration = 1f; 
     private float transitionTime = 0f;
-    private bool isChanging = false; // Controla si la transición está activa
+    private bool isChanging = false; 
     private Color originalColor;
 
     void Start()
@@ -24,7 +24,7 @@ public class PlatformBrightnessController : MonoBehaviour
         {
             isChanging = true;
             transitionTime = 0f;
-            StartCoroutine(ChangeColor(targetColor)); // Inicia la transición hacia el color objetivo
+            StartCoroutine(ChangeColor(targetColor)); 
         }
     }
 
@@ -34,7 +34,7 @@ public class PlatformBrightnessController : MonoBehaviour
         {
             isChanging = false;
             transitionTime = 0f;
-            StartCoroutine(ChangeColor(originalColor)); // Inicia la transición de regreso al color original
+            StartCoroutine(ChangeColor(originalColor));
         }
     }
 
@@ -47,6 +47,6 @@ public class PlatformBrightnessController : MonoBehaviour
             meshRenderer.material.color = Color.Lerp(meshRenderer.material.color, newColor, transitionTime / transitionDuration);
             yield return null;
         }
-        meshRenderer.material.color = newColor; // Asegura que el color final es exactamente el esperado
+        meshRenderer.material.color = newColor;
     }
 }
