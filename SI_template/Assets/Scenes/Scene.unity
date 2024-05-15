@@ -2868,7 +2868,7 @@ MonoBehaviour:
   cameras:
   - {fileID: 342261394}
   - {fileID: 2041817079}
-  enableTracking: 0
+  enableTracking: 1
   numberOfPlayers: 2
   numberOfBaseStations: 4
   screenToWorldPosTracking: 1
@@ -5836,8 +5836,6 @@ MonoBehaviour:
   Paco2: {fileID: 1088950399}
   player1: {fileID: 1440896347}
   player2: {fileID: 1471923275}
-  q: {x: 0, y: 0, z: 0, w: 0}
-  manual: 0
 --- !u!54 &1440896353
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6156,11 +6154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb10eb3e2bb6465fbfc5baa48cebf54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionTarget: {fileID: 0}
   lightPlane: {fileID: 1993002977}
-  linkedTile: {fileID: 0}
   plateOn: {fileID: 1469139486}
   plateOff: {fileID: 1469139485}
-  isOnButton: 0
 --- !u!82 &1469139485
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6601,8 +6598,6 @@ MonoBehaviour:
   Paco2: {fileID: 1088950399}
   player1: {fileID: 1440896347}
   player2: {fileID: 1471923275}
-  q: {x: 0, y: 0, z: 0, w: 0}
-  manual: 0
 --- !u!54 &1471923281
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8939,11 +8934,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7527a002f9df16e4a8f145e3cc58be5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1471923275}
-  targetTileMaterial: {fileID: 2100000, guid: 5eb2f976b27f5f54cbf69f0e10dd266d, type: 2}
-  tile: {fileID: 387599850}
-  fadeInSpeed: 0.4
-  fadeOutSpeed: 1
+  crackedObject: {fileID: 0}
+  hideObject: {fileID: 0}
+  transitionTime: 2
 --- !u!65 &1866918071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9547,7 +9540,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  platform: {fileID: 1438715822}
 --- !u!65 &1961217871
 BoxCollider:
   m_ObjectHideFlags: 0
