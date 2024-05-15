@@ -21,7 +21,7 @@ public class QuitManager : MonoBehaviour
 
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("testprefabsH");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }

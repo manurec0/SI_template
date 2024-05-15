@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //here should be animation of death badabi badaba
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
 
         }
     }
