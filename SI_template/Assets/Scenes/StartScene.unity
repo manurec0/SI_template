@@ -7902,7 +7902,7 @@ MonoBehaviour:
   cameras:
   - {fileID: 1148234749}
   - {fileID: 1379354406}
-  enableTracking: 1
+  enableTracking: 0
   numberOfPlayers: 2
   numberOfBaseStations: 4
   screenToWorldPosTracking: 1
