@@ -1486,6 +1486,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157276139}
   m_CullTransparentMesh: 1
+--- !u!114 &158561108 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1387940813408863392, guid: ac25d646431147345a6d20a88828a7d1, type: 3}
+  m_PrefabInstance: {fileID: 1578330221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7527a002f9df16e4a8f145e3cc58be5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &185534725
 GameObject:
   m_ObjectHideFlags: 0
@@ -2239,6 +2250,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PressurePlate3
       objectReference: {fileID: 0}
+    - target: {fileID: 6709706517018967711, guid: 092fe1c3e67a1304da5bc9a9e113ba09, type: 3}
+      propertyPath: actionTarget
+      value: 
+      objectReference: {fileID: 158561108}
     - target: {fileID: 8850159393014698471, guid: 092fe1c3e67a1304da5bc9a9e113ba09, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -3626,6 +3641,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8956061039821965225, guid: 65e4b77a2a7d88049a023e7cad6e6212, type: 3}
   m_PrefabInstance: {fileID: 1674523987}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &646840032 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3811023938722602806, guid: 65e4b77a2a7d88049a023e7cad6e6212, type: 3}
+  m_PrefabInstance: {fileID: 1674523987}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646840030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b601b16bc42545c49aa3dfa9083acda2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &646840037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4692,6 +4718,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976091289}
   m_CullTransparentMesh: 1
+--- !u!114 &1010631719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1387940813408863392, guid: ac25d646431147345a6d20a88828a7d1, type: 3}
+  m_PrefabInstance: {fileID: 59268632}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7527a002f9df16e4a8f145e3cc58be5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1019863594
 GameObject:
   m_ObjectHideFlags: 0
@@ -5248,6 +5285,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1023965655}
     m_Modifications:
+    - target: {fileID: 149504806208143059, guid: c01a711087f4e964792f4fb685abb636, type: 3}
+      propertyPath: actionTarget
+      value: 
+      objectReference: {fileID: 1865594762}
     - target: {fileID: 2923869303590664746, guid: c01a711087f4e964792f4fb685abb636, type: 3}
       propertyPath: m_Name
       value: Button1
@@ -7043,6 +7084,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 967729864}
     m_Modifications:
+    - target: {fileID: 416397503288831057, guid: 246cff20b79d31c499fb5e625e1559e3, type: 3}
+      propertyPath: actionTarget
+      value: 
+      objectReference: {fileID: 646840032}
     - target: {fileID: 3406930396551358632, guid: 246cff20b79d31c499fb5e625e1559e3, type: 3}
       propertyPath: m_Name
       value: Button1
@@ -7727,6 +7772,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PressurePlate2
       objectReference: {fileID: 0}
+    - target: {fileID: 6709706517018967711, guid: 092fe1c3e67a1304da5bc9a9e113ba09, type: 3}
+      propertyPath: actionTarget
+      value: 
+      objectReference: {fileID: 1010631719}
     - target: {fileID: 8850159393014698471, guid: 092fe1c3e67a1304da5bc9a9e113ba09, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -7797,6 +7846,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PressurePlate1
       objectReference: {fileID: 0}
+    - target: {fileID: 7561891269520749274, guid: 153aaa0d72cc2f746836e6c56cc0dc26, type: 3}
+      propertyPath: actionTarget
+      value: 
+      objectReference: {fileID: 1865594762}
     - target: {fileID: 8671020330524411484, guid: 153aaa0d72cc2f746836e6c56cc0dc26, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -8885,7 +8938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4928340414453707827, guid: 092fe1c3e67a1304da5bc9a9e113ba09, type: 3}
       propertyPath: m_Size.y
-      value: 10.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5600562038024276505, guid: 092fe1c3e67a1304da5bc9a9e113ba09, type: 3}
       propertyPath: m_PlayOnAwake
@@ -8895,6 +8948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PressurePlate1
       objectReference: {fileID: 0}
+    - target: {fileID: 6709706517018967711, guid: 092fe1c3e67a1304da5bc9a9e113ba09, type: 3}
+      propertyPath: actionTarget
+      value: 
+      objectReference: {fileID: 1010631719}
     - target: {fileID: 8850159393014698471, guid: 092fe1c3e67a1304da5bc9a9e113ba09, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -8906,6 +8963,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 392192971222815455, guid: 092fe1c3e67a1304da5bc9a9e113ba09, type: 3}
   m_PrefabInstance: {fileID: 1862643715}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1865594762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2324361362414567881, guid: 4d89b1d059c13344d9ad1df25a5b9d1a, type: 3}
+  m_PrefabInstance: {fileID: 612348208}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7527a002f9df16e4a8f145e3cc58be5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1866559963
 GameObject:
   m_ObjectHideFlags: 0
