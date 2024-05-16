@@ -5,39 +5,67 @@ using UnityEngine;
 public class platformMovingController : MonoBehaviour, IPlateAction
 {
     public float speed = 2.0f;
-    private float startPositionZ = 85.0f;
-    private float endPositionZ = 75.0f;
-    private bool movingForward = true;
+    //private float startPositionZ = 85.0f;
+    //private float endPositionZ = 75.0f;
+    private float startPositionZ;
+    public float endPositionZ;
+    public Vector3 startPos;
+    public Vector3 endPos;
+    public Vector3 direction;
+    private Vector3 debugCurrPos;
+    private float debugDistanceStart;
+    private float debugDistanceEnd;
+    private Vector3 currDirection;
+    //private bool movingForward = true;
     private bool playerOnButton = false;
 
+    void Start()
+    {
+        startPos = transform.position;
+        startPositionZ = startPos.z;
+        debugCurrPos = startPos;
+
+    }
     void Update()
     {
         if (!playerOnButton) // Solo moverse si el jugador no está presionando el botón
         {
-            if (movingForward)
+            if(debugDistanceStart < 0.5f)
             {
-                // Move forward
-                if (transform.position.z > endPositionZ)
-                {
-                    transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
-                }
-                else
-                {
-                    movingForward = false;
-                }
+                //move forward
+                currDirection = direction; 
             }
-            else
-            {
-                // Move backward
-                if (transform.position.z < startPositionZ)
-                {
-                    transform.position += new Vector3(0, 0, speed * Time.deltaTime);
-                }
-                else
-                {
-                    movingForward = true;
-                }
-            }
+            if (debugDistanceEnd < 0.5f)
+                currDirection = direction * -1;
+            //move platform
+            debugCurrPos = transform.position;
+            debugDistanceStart = Vector3.Distance(debugCurrPos, startPos);
+            debugDistanceEnd = Vector3.Distance(debugCurrPos, endPos);
+            transform.position -= currDirection * speed * Time.deltaTime;
+            //if (movingForward)
+            //{
+            //    // Move forward
+            //    if (transform.position.z > endPositionZ)
+            //    {
+            //        transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
+            //    }
+            //    else
+            //    {
+            //        movingForward = false;
+            //    }
+            //}
+            //else
+            //{
+            //    // Move backward
+            //    if (transform.position.z < startPositionZ)
+            //    {
+            //        transform.position += new Vector3(0, 0, speed * Time.deltaTime);
+            //    }
+            //    else
+            //    {
+            //        movingForward = true;
+            //    }
+            //}
         }
     }
 

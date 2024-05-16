@@ -6,14 +6,13 @@ public class pressurePlateController : MonoBehaviour
     public MonoBehaviour actionTarget; 
 
     private IPlateAction actionInterface;
-        public GameObject lightPlane;
+    public GameObject lightPlane;
     public AudioSource plateOn;
     public AudioSource plateOff;
 
     void Start()
     {
         actionInterface = actionTarget as IPlateAction;
-
 
     }
 
