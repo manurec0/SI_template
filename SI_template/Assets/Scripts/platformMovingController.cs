@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class platformMovingController : MonoBehaviour
+public class platformMovingController : MonoBehaviour, IPlateAction
 {
     public float speed = 2.0f;
     private float startPositionZ = 85.0f;
@@ -41,9 +41,8 @@ public class platformMovingController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    public void ExecuteAction(bool isActive)
     {
-        playerOnButton = !playerOnButton;
-        
+        playerOnButton = isActive; 
     }
 }
