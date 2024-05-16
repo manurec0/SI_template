@@ -30,12 +30,12 @@ public class platformMovingController : MonoBehaviour, IPlateAction
     {
         if (!playerOnButton) // Solo moverse si el jugador no está presionando el botón
         {
-            if(debugDistanceStart < 0.5f)
+            if(debugDistanceStart < 0.25f)
             {
                 //move forward
                 currDirection = direction; 
             }
-            if (debugDistanceEnd < 0.5f)
+            if (debugDistanceEnd < 0.25f)
                 currDirection = direction * -1;
             //move platform
             debugCurrPos = transform.position;
