@@ -6,31 +6,30 @@ public class PlatformBrightnessController : MonoBehaviour
 {
     private MeshRenderer meshRenderer;
     public Color targetColor;
-    public float transitionDuration = 1f; 
+    public float transitionDuration = 1f;
     private float transitionTime = 0f;
-    private bool isChanging = false; 
+    private bool isChanging = false;
     private Color originalColor;
 
     void Start()
     {
-        Debug.Log(targetColor);
         meshRenderer = GetComponent<MeshRenderer>();
         originalColor = meshRenderer.material.color;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if ( !isChanging)
+        if (!isChanging)
         {
             isChanging = true;
             transitionTime = 0f;
-            StartCoroutine(ChangeColor(targetColor)); 
+            StartCoroutine(ChangeColor(targetColor));
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if ( isChanging)
+        if (isChanging)
         {
             isChanging = false;
             transitionTime = 0f;
@@ -40,7 +39,6 @@ public class PlatformBrightnessController : MonoBehaviour
 
     IEnumerator ChangeColor(Color newColor)
     {
-        Debug.Log(newColor);
         while (transitionTime < transitionDuration)
         {
             transitionTime += Time.deltaTime;
