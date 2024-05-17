@@ -8640,7 +8640,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d25e004fd33517499cefef374e561b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 6
+  endPositionZ: 75
+  startPos: {x: 65, y: 0, z: 85}
+  endPos: {x: 65, y: 0, z: 75}
+  direction: {x: 0, y: 0, z: 1}
 --- !u!1 &1675798022
 GameObject:
   m_ObjectHideFlags: 0
