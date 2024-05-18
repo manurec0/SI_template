@@ -8,7 +8,7 @@ public class EndLevel : MonoBehaviour
     private bool player2IsEnd = false;
     public List<GameObject> levels;
     public AnimationCurve speedCurve;
-    public float duration = 2f; /
+    public float duration = 2f;
     private int currentLevelIndex = 0;
 
     void Update()

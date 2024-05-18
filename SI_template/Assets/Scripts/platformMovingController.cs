@@ -41,7 +41,7 @@ public class platformMovingController : MonoBehaviour, IPlateAction
             debugCurrPos = transform.position;
             debugDistanceStart = Vector3.Distance(debugCurrPos, startPos);
             debugDistanceEnd = Vector3.Distance(debugCurrPos, endPos);
-            transform.position -= currDirection * speed * Time.deltaTime;
+            transform.position += currDirection * speed * Time.deltaTime;
             //if (movingForward)
             //{
             //    // Move forward
