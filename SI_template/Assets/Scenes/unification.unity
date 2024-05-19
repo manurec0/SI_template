@@ -1748,6 +1748,7 @@ GameObject:
   - component: {fileID: 253906962}
   - component: {fileID: 253906961}
   - component: {fileID: 253906960}
+  - component: {fileID: 253906963}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1837,6 +1838,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &253906963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253906958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b067b966cf7f4164b886a6e76ea9016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Paco1: {fileID: 681612107}
+  Paco2: {fileID: 1284143610}
+  player1: {fileID: 1201156741}
+  player2: {fileID: 1551215558}
 --- !u!1 &274718983
 GameObject:
   m_ObjectHideFlags: 0
@@ -7711,6 +7728,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndTiles
       objectReference: {fileID: 0}
+    - target: {fileID: 4991495324596593556, guid: be18ad4b1092842da94b98b7ab33546a, type: 3}
+      propertyPath: m_TagString
+      value: endLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 8254316200618786827, guid: be18ad4b1092842da94b98b7ab33546a, type: 3}
       propertyPath: duration
       value: 6
@@ -8004,10 +8025,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb442334999fb84487442a2b692a37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Paco1: {fileID: 681612107}
-  Paco2: {fileID: 1284143610}
-  player1: {fileID: 1201156741}
-  player2: {fileID: 1551215558}
+  levels:
+  - {fileID: 1727564326}
+  - {fileID: 1825383355}
+  speedCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 0
+  currLevel: 1
 --- !u!65 &1201156745
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10039,10 +10067,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb442334999fb84487442a2b692a37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Paco1: {fileID: 962279406}
-  Paco2: {fileID: 1695233991}
-  player1: {fileID: 1201156741}
-  player2: {fileID: 1551215558}
+  levels:
+  - {fileID: 1727564326}
+  - {fileID: 1825383355}
+  speedCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  duration: 0
+  currLevel: 1
 --- !u!65 &1551215561
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10409,8 +10444,20 @@ PrefabInstance:
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 4889122491785801617, guid: 4d89b1d059c13344d9ad1df25a5b9d1a, type: 3}
+      propertyPath: m_Name
+      value: cracked
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889122491785801617, guid: 4d89b1d059c13344d9ad1df25a5b9d1a, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889122491785801617, guid: 4d89b1d059c13344d9ad1df25a5b9d1a, type: 3}
+      propertyPath: m_TagString
+      value: outPath
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777826975247491278, guid: 4d89b1d059c13344d9ad1df25a5b9d1a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6856354091961255475, guid: 4d89b1d059c13344d9ad1df25a5b9d1a, type: 3}
       propertyPath: m_RootOrder
@@ -12281,7 +12328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1727564327}
   m_Layer: 0
-  m_Name: Level1 (2)
+  m_Name: Level1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12878,7 +12925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1960410589}
   m_Layer: 0
-  m_Name: Level1 (1)
+  m_Name: oldLevel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

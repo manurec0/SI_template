@@ -5,8 +5,9 @@ public class platformTransparencyController : MonoBehaviour, IPlateAction
 {
     public GameObject crackedObject; 
     public GameObject hideObject;    
-    public float transitionTime = 2f; 
+    public float transitionTime = 2f;
 
+    private BoxCollider boxCollider;
     private IEnumerator currentTransition;
 
     void Start()
@@ -32,7 +33,7 @@ public class platformTransparencyController : MonoBehaviour, IPlateAction
         Debug.Log("gi");
         float elapsed = 0;
         
-        hideObject.SetActive(true);
+        hideObject.SetActive(toActive);
 
         while (elapsed < transitionTime)
         {
@@ -43,7 +44,8 @@ public class platformTransparencyController : MonoBehaviour, IPlateAction
             elapsed += Time.deltaTime;
             yield return null;
         }
-
+        boxCollider = GetComponent<BoxCollider>();
+        boxCollider.enabled = !boxCollider.enabled;
 
         SetOpacity(hideObject, toActive ? 1 : 0);
         SetOpacity(crackedObject, toActive ? 0 : 1);

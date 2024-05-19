@@ -2,42 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Vector3 DebugPos1;
-    private Vector3 DebugPos2;
-    public TextMeshProUGUI Paco1;
-    public TextMeshProUGUI Paco2;
-    public GameObject player1;
-    public GameObject player2;
 
-
+    public List<GameObject> levels;
+    public AnimationCurve speedCurve;
+    public float duration = 2f;
+    public int currLevel = 1;
 
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("outPath"))
+        if (other.CompareTag("outPath") && currLevel == 1) // start level 1
         {
             //here should be animation of death badabi badaba
-
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (SceneManager.GetActiveScene().name != "StartScene")
+        else if (other.CompareTag("outPath"))
         {
-            DebugPos1 = new Vector3(player1.transform.position.x, player1.transform.position.y, player1.transform.position.z);
-            DebugPos2 = new Vector3(player2.transform.position.x, player2.transform.position.y, player2.transform.position.z);
-            Paco1.text = DebugPos1.ToString();
-            Paco2.text = DebugPos2.ToString();
+            StartCoroutine(TransitionLevels(levels[currLevel - 2], levels[currLevel-1]));
+            currLevel--;
         }
+        else if (other.CompareTag("endLevel")) currLevel++;
     }
+
+
 
     public void setPosition(Vector3 pos)
     {
@@ -51,5 +41,26 @@ public class PlayerMovement : MonoBehaviour
         transform.localRotation = quat;
     }
 
+
+    IEnumerator TransitionLevels(GameObject prevLevel, GameObject currentLevel)
+    {
+        float startTime = Time.time;
+        Vector3 currentLevelStartPos = currentLevel.transform.position;
+        Vector3 nextLevelStartPos = prevLevel.transform.position;
+        Vector3 currentLevelEndPos = currentLevelStartPos + new Vector3(0, 1000, 0);
+        Vector3 nextLevelEndPos = nextLevelStartPos + new Vector3(0, 1000, 0);
+
+        while (Time.time < startTime + duration)
+        {
+            float t = (Time.time - startTime) / duration;
+            float curveValue = speedCurve.Evaluate(t);
+            currentLevel.transform.position = Vector3.Lerp(currentLevelStartPos, currentLevelEndPos, curveValue);
+            prevLevel.transform.position = Vector3.Lerp(nextLevelStartPos, nextLevelEndPos, curveValue);
+            yield return null;
+        }
+
+        currentLevel.transform.position = currentLevelEndPos;
+        prevLevel.transform.position = nextLevelEndPos;
+    }
 
 }

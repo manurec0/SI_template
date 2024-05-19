@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &5626473793070497114
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4889122491785801617}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.001275, y: 10, z: 10}
+  m_Center: {x: -0.0006375313, y: 1, z: 0}
 --- !u!1001 &5487625529562861248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,6 +20,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1152447995329274193, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
+      propertyPath: m_TagString
+      value: outPath
+      objectReference: {fileID: 0}
     - target: {fileID: 1369481179326056691, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -67,9 +84,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueCrackedPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 7825619553511539634, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8482950853781815102, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 13c3d4521119d3a4ab52391b4e9738ba, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
+--- !u!1 &4889122491785801617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1152447995329274193, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
+  m_PrefabInstance: {fileID: 5487625529562861248}
+  m_PrefabAsset: {fileID: 0}

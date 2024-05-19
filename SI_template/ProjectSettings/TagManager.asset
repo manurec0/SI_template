@@ -12,6 +12,7 @@ TagManager:
   - start
   - start2
   - Player2
+  - endLevel
   layers:
   - Default
   - TransparentFX
