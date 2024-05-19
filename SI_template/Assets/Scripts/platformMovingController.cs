@@ -28,9 +28,12 @@ public class platformMovingController : MonoBehaviour, IPlateAction
     }
     void Update()
     {
+        BoxCollider boxCollider = GetComponentInParent<BoxCollider>();
+
         if (!playerOnButton) // Solo moverse si el jugador no está presionando el botón
         {
-            if(debugDistanceStart < 0.25f)
+
+            if (debugDistanceStart < 0.25f)
             {
                 //move forward
                 currDirection = direction; 
@@ -66,6 +69,17 @@ public class platformMovingController : MonoBehaviour, IPlateAction
             //        movingForward = true;
             //    }
             //}
+
+            
+        }
+        if ((transform.position - endPos).magnitude < 0.5f && playerOnButton)
+        {
+            boxCollider.enabled = false;
+        }
+        else
+        {
+            boxCollider.enabled = true;
+
         }
     }
 
