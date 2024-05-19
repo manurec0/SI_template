@@ -1,21 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndLevel : MonoBehaviour
 {
     private bool player1IsEnd = false;
     private bool player2IsEnd = false;
+
     public List<GameObject> levels;
     public AnimationCurve speedCurve;
     public float duration = 2f;
+    public bool IsMultiLevel;
+
     private int currentLevelIndex = 0;
 
     void Update()
     {
         if (player1IsEnd && player2IsEnd)
         {
-            if (currentLevelIndex < levels.Count - 1)
+            if (!IsMultiLevel)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else if (currentLevelIndex < levels.Count - 1)
             {
                 StartCoroutine(TransitionLevels(levels[currentLevelIndex], levels[currentLevelIndex + 1]));
                 currentLevelIndex++;

@@ -6,8 +6,8 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Vector3 DebugPos1;
-    public Vector3 DebugPos2;
+    private Vector3 DebugPos1;
+    private Vector3 DebugPos2;
     public TextMeshProUGUI Paco1;
     public TextMeshProUGUI Paco2;
     public GameObject player1;
@@ -30,10 +30,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DebugPos1 = new Vector3(player1.transform.position.x, player1.transform.position.y, player1.transform.position.z);
-        DebugPos2 = new Vector3(player2.transform.position.x, player2.transform.position.y, player2.transform.position.z);
-        Paco1.text = DebugPos1.ToString();
-        Paco2.text = DebugPos2.ToString();
+        if (SceneManager.GetActiveScene().name != "StartScene")
+        {
+            DebugPos1 = new Vector3(player1.transform.position.x, player1.transform.position.y, player1.transform.position.z);
+            DebugPos2 = new Vector3(player2.transform.position.x, player2.transform.position.y, player2.transform.position.z);
+            Paco1.text = DebugPos1.ToString();
+            Paco2.text = DebugPos2.ToString();
+        }
     }
 
     public void setPosition(Vector3 pos)

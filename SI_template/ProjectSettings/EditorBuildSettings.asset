@@ -8,13 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Scene.unity
     guid: 7caa62cc387295b4f914c27933b17bf5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: ac8bd90916ca64baba6fe520642c9f6a
   - enabled: 0
     path: Assets/Scenes/testprefabls.unity
     guid: 1e6bdd2642bc6c84f8a92fb1567b5ec7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level2TestRoom.unity
     guid: ff4a92ec1916842679c73498a69a2e66
+  - enabled: 1
+    path: Assets/Scenes/unification.unity
+    guid: b5efda7377cc3004ebcfe08a92212124
   m_configObjects: {}
