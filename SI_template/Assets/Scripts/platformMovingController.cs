@@ -13,8 +13,8 @@ public class platformMovingController : MonoBehaviour, IPlateAction
     public Vector3 endPos;
     public Vector3 direction;
     private Vector3 debugCurrPos;
-    private float debugDistanceStart;
-    private float debugDistanceEnd;
+    public float debugDistanceStart;
+    public float debugDistanceEnd;
     private Vector3 currDirection;
     //private bool movingForward = true;
     private bool playerOnButton = false;
