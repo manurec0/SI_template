@@ -6,22 +6,26 @@ public class ButtonController : MonoBehaviour
 {
     public MonoBehaviour actionTarget; 
     private IPlateAction actionInterface;
+    private bool isPlayerOnButton;
 
     void Start()
     {
         actionInterface = actionTarget as IPlateAction;
+        isPlayerOnButton = false;
 
-        
+
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-            actionInterface.ExecuteAction(true);
+        isPlayerOnButton = !isPlayerOnButton;
+        actionInterface.ExecuteAction(isPlayerOnButton);
     }
 
-    private void OnTriggerExit(Collider other)
-    {
+    //private void OnTriggerExit(Collider other)
+    //{
      
-            actionInterface.ExecuteAction(false);
-    }
+    //    actionInterface.ExecuteAction(false);
+    //}
 }
