@@ -18,12 +18,19 @@ public class platformMovingController : MonoBehaviour, IPlateAction
     private Vector3 currDirection;
     //private bool movingForward = true;
     private bool playerOnButton = false;
+    public bool isMoving;
+
+    //Audio
+    public AudioSource movingLoop;
+    public AudioSource startUp;
+    public AudioSource end;
 
     void Start()
     {
         startPos = transform.position;
         startPositionZ = startPos.z;
         debugCurrPos = startPos;
+        movingLoop.Play();
 
     }
     void Update()
@@ -32,6 +39,8 @@ public class platformMovingController : MonoBehaviour, IPlateAction
 
         if (!playerOnButton) // Solo moverse si el jugador no está presionando el botón
         {
+            isMoving = true;
+            //movingLoop.Play();
 
             if (debugDistanceStart < 0.25f)
             {
@@ -87,5 +96,16 @@ public class platformMovingController : MonoBehaviour, IPlateAction
     public void ExecuteAction(bool isActive)
     {
         playerOnButton = isActive; // Cambia el estado de si el jugador está presionando el botón
+        if (playerOnButton)
+        {
+            StartCoroutine(AudioFadeScript.FadeOut(movingLoop, 1f));
+            end.Play();
+        }
+        else
+        {
+            startUp.Play();
+            movingLoop.Play();
+        }
+        isMoving = !isMoving;
     }
 }
