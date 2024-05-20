@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class ButtonController : MonoBehaviour
 {
-    public MonoBehaviour actionTarget; 
+    public MonoBehaviour actionTarget;
+    public GameObject lightPlane;
     private IPlateAction actionInterface;
-    private bool isPlayerOnButton;
+    private bool buttonState;
 
     void Start()
     {
         actionInterface = actionTarget as IPlateAction;
-        isPlayerOnButton = false;
-
-
+        buttonState = false;
+        lightPlane.SetActive(false);
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        isPlayerOnButton = !isPlayerOnButton;
-        actionInterface.ExecuteAction(isPlayerOnButton);
+        buttonState = !buttonState;
+        actionInterface.ExecuteAction(buttonState);
+        lightPlane.SetActive(buttonState);
     }
 
     //private void OnTriggerExit(Collider other)

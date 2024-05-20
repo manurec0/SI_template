@@ -55,9 +55,13 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6feec664fa356764a85b6ed8f7736a57, type: 2}
+    - target: {fileID: 7819768189839080440, guid: 1ef44b0f193bfb54093cb4d60f363de6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 653da580a8860428d9b83ead318bd804, type: 2}
     - target: {fileID: 8615249159153555975, guid: 1ef44b0f193bfb54093cb4d60f363de6, type: 3}
       propertyPath: m_Name
-      value: RedButtonInteractable Variant
+      value: RedButtonInteractable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ef44b0f193bfb54093cb4d60f363de6, type: 3}
