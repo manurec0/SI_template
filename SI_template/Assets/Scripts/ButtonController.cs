@@ -6,6 +6,8 @@ public class ButtonController : MonoBehaviour
 {
     public MonoBehaviour actionTarget;
     public GameObject lightPlane;
+    public AudioSource buttonOn;
+    //public AudioSource buttonOff;
     private IPlateAction actionInterface;
     private bool buttonState;
 
@@ -22,6 +24,7 @@ public class ButtonController : MonoBehaviour
         buttonState = !buttonState;
         actionInterface.ExecuteAction(buttonState);
         lightPlane.SetActive(buttonState);
+        buttonOn.Play();
     }
 
     //private void OnTriggerExit(Collider other)
