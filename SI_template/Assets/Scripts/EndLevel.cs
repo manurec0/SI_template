@@ -36,8 +36,8 @@ public class EndLevel : MonoBehaviour
             else if (nextEndTile)
             {
                 nextEndTile.SetActive(true);
-
-                StartCoroutine(TransitionLevels(currLevel, nextLevel));
+                MovePathsTemp(currLevel, nextLevel);
+                //StartCoroutine(TransitionLevels(currLevel, nextLevel));
                 currEndTile.SetActive(false);
 
             }
@@ -79,6 +79,16 @@ public class EndLevel : MonoBehaviour
             Debug.Log("Player 2 left the end tile");
         }
     }
+
+    void MovePathsTemp(GameObject currentLevel, GameObject nextLevel)
+    {
+        currentLevel.transform.position += new Vector3(0, -1000, 0);
+        nextLevel.transform.position += new Vector3(0, -1000, 0);
+
+    }
+
+
+    //doesnt work rn
 
     IEnumerator TransitionLevels(GameObject currentLevel, GameObject nextLevel)
     {
