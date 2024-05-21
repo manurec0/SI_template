@@ -6,6 +6,7 @@ public class platformTransparencyController : MonoBehaviour, IPlateAction
     public GameObject crackedObject; 
     public GameObject hideObject;    
     public float transitionTime = 2f;
+    public AudioSource transitionSound;
 
     private BoxCollider boxCollider;
     private IEnumerator currentTransition;
@@ -34,6 +35,7 @@ public class platformTransparencyController : MonoBehaviour, IPlateAction
         float elapsed = 0;
         
         hideObject.SetActive(toActive);
+        transitionSound.Play();
 
         while (elapsed < transitionTime)
         {
