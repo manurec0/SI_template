@@ -98,7 +98,7 @@ public class platformMovingController : MonoBehaviour, IPlateAction
         playerOnButton = isActive; // Cambia el estado de si el jugador está presionando el botón
         if (playerOnButton)
         {
-            StartCoroutine(AudioFadeScript.FadeOut(movingLoop, 1f));
+            StartCoroutine(AudioManager.FadeOut(movingLoop, 1f));
             end.Play();
         }
         else

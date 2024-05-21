@@ -36,13 +36,13 @@ public class platformTransparencyController : MonoBehaviour, IPlateAction
         
         hideObject.SetActive(toActive);
         transitionSound.Play();
+        StartCoroutine(AudioManager.PitchUp(transitionSound, 1.7f, transitionTime));
 
         while (elapsed < transitionTime)
         {
             float factor = elapsed / transitionTime;
             SetOpacity(hideObject, toActive ? factor : 1 - factor);
             SetOpacity(crackedObject, toActive ? 1 - factor : factor);
-
             elapsed += Time.deltaTime;
             yield return null;
         }

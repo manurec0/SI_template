@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class AudioFadeScript
+public static class AudioManager
 {
     public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
     {
@@ -34,5 +34,26 @@ public static class AudioFadeScript
         }
 
         audioSource.volume = 1f;
+    }
+
+    public static IEnumerator PitchUp(AudioSource audioSource, float threshold, float FadeTime)
+    {
+        float startPitch = 1f;
+        while (audioSource.pitch < threshold)
+        {
+            audioSource.pitch += startPitch * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+        audioSource.pitch = startPitch;
+    }
+
+    public static void PitchDown(AudioSource audioSource, float threshold, float factor)
+    {
+        while (audioSource.pitch > threshold)
+        {
+            audioSource.pitch -= factor;
+        }
+
+        audioSource.pitch = 1f;
     }
 }
