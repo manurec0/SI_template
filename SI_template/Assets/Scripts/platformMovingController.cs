@@ -45,6 +45,7 @@ public class platformMovingController : MonoBehaviour, IPlateAction
                 currDirection = direction * -1;
 
             //move platform
+            startPos.y = transform.position.y;
             debugCurrPos = transform.position;
             endPos.y = debugCurrPos.y;
             debugDistanceStart = Vector3.Distance(debugCurrPos, startPos);
