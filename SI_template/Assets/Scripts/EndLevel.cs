@@ -158,4 +158,19 @@ public class EndLevel : MonoBehaviour
         nextLevel.transform.position = nextLevelEndPos;
         */
     }
+    void OnEnable()
+    {
+        LevelChange.OnLevelUp += UpdateLocalCounter;
+    }
+
+    void OnDisable()
+    {
+        LevelChange.OnLevelUp -= UpdateLocalCounter;
+    }
+
+    private void UpdateLocalCounter(int newLevel)
+    {
+        counter = newLevel;
+
+    }
 }

@@ -11,8 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public List<GameObject> levelsList;
     public AnimationCurve speedCurve;
     public float duration = 2f;
+
+    public GameObject manageLevels;
+
     public TextMeshProUGUI levelCounterObj;
-    public int counter;
+    private int counter;
 
     private void Start()
     {
@@ -20,13 +23,6 @@ public class PlayerMovement : MonoBehaviour
         levelCounterObj.text = counter.ToString();
     }
 
-    private void Update()
-    {
-        //this might cause issues as im updating the value of level counter with currLevel and in TRANSITION LEVEL im doing it the other way around
-        // but we need it as if its the other player that falls this player wouldnt know it and say they are still in the same level 
-        //int.TryParse(levelCounterObj.text, out counter);
-
-    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -38,9 +34,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.CompareTag("outPath"))
         {
+
             StartCoroutine(TransitionLevels(levelsList[counter - 1], levelsList[counter]));
         }
     }
+
 
 
 
@@ -59,9 +57,48 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator TransitionLevels(GameObject prevLevel, GameObject currentLevel)
     {
+        Transform prevTrans = manageLevels.transform.GetChild(counter-1);
+        Transform currTrans = manageLevels.transform.GetChild(counter);
+        GameObject prevEndTile = prevTrans.gameObject;
+        GameObject currEndTile = currTrans.gameObject;
         counter--;
+
+
+
+
+        //change endTiles 
+        prevEndTile.SetActive(true);
+
+        Debug.Log($"previous should be active {prevEndTile.name}, state: {prevEndTile.activeInHierarchy}");
+        LevelChange.LevelUp(counter); //this should reset the local variables of everything (for the end tiles prev if u fell level 1 wouldnt get updated as it was disabled lets see)
+        currEndTile.SetActive(false);
+
+
+        //disable colliders of the level until both players are at the start positions again
+        Transform childTransform = prevEndTile.transform.Find("colliders");
+        GameObject colliders = childTransform.gameObject;
+        colliders.SetActive(false);
+
+        //get the start and end tiles object
+        Transform startTilesTransform = prevEndTile.transform.Find("StartTiles");
+        GameObject startTiles = startTilesTransform.gameObject;
+        Transform endTilesTransform = prevEndTile.transform.Find("EndTiles");
+        GameObject endTiles = endTilesTransform.gameObject;
+
+        //disable colliders end tiles
+        BoxCollider[] boxCollidersEnd  = endTiles.GetComponents<BoxCollider>();
+        foreach (BoxCollider boxCollider in boxCollidersEnd) boxCollider.enabled = false;
+
+        //activate colliders start tiles
+        BoxCollider[] boxCollidersStart = startTiles.GetComponents<BoxCollider>();
+        foreach (BoxCollider boxCollider in boxCollidersStart) boxCollider.enabled = true;
+
+        //activate the script
+        startTiles.GetComponent<MonoBehaviour>().enabled = true; 
+
+
+        //animation of falling currently theres no animation but it does the change of level...
         levelCounterObj.text = counter.ToString();
-        LevelChange.LevelUp(counter);
         float startTime = Time.time;
         Vector3 currentLevelStartPos = currentLevel.transform.position;
         Vector3 nextLevelStartPos = prevLevel.transform.position;
