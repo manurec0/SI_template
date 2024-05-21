@@ -2,29 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class PlayerMovement : MonoBehaviour
 {
 
-    public List<GameObject> levels;
+    public List<GameObject> levelsList;
     public AnimationCurve speedCurve;
     public float duration = 2f;
-    public int currLevel = 1;
+    public TextMeshProUGUI levelCounterObj;
+    public int counter;
 
+    private void Start()
+    {
+        counter = 0;
+        levelCounterObj.text = counter.ToString();
+    }
+
+    private void Update()
+    {
+        //this might cause issues as im updating the value of level counter with currLevel and in TRANSITION LEVEL im doing it the other way around
+        // but we need it as if its the other player that falls this player wouldnt know it and say they are still in the same level 
+        //int.TryParse(levelCounterObj.text, out counter);
+
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("outPath") && currLevel == 1) // start level 1
+        if (other.CompareTag("outPath") && counter == 0) 
         {
             //here should be animation of death badabi badaba
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
         }
         else if (other.CompareTag("outPath"))
         {
-            StartCoroutine(TransitionLevels(levels[currLevel - 2], levels[currLevel-1]));
-            currLevel--;
+            StartCoroutine(TransitionLevels(levelsList[counter - 1], levelsList[counter]));
         }
-        else if (other.CompareTag("endLevel")) currLevel++;
     }
 
 
@@ -44,6 +59,9 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator TransitionLevels(GameObject prevLevel, GameObject currentLevel)
     {
+        counter--;
+        levelCounterObj.text = counter.ToString();
+        LevelChange.LevelUp(counter);
         float startTime = Time.time;
         Vector3 currentLevelStartPos = currentLevel.transform.position;
         Vector3 nextLevelStartPos = prevLevel.transform.position;
@@ -54,8 +72,8 @@ public class PlayerMovement : MonoBehaviour
         {
             float t = (Time.time - startTime) / duration;
             float curveValue = speedCurve.Evaluate(t);
-            currentLevel.transform.position = Vector3.Lerp(currentLevelStartPos, currentLevelEndPos, curveValue);
-            prevLevel.transform.position = Vector3.Lerp(nextLevelStartPos, nextLevelEndPos, curveValue);
+            currentLevel.transform.position = Vector3.Lerp(currentLevelEndPos, currentLevelStartPos, curveValue);
+            prevLevel.transform.position = Vector3.Lerp(nextLevelEndPos, nextLevelStartPos,  curveValue);
             yield return null;
         }
 
@@ -63,4 +81,21 @@ public class PlayerMovement : MonoBehaviour
         prevLevel.transform.position = nextLevelEndPos;
     }
 
+
+
+    void OnEnable()
+    {
+        LevelChange.OnLevelUp += UpdateLocalCounter;
+    }
+
+    void OnDisable()
+    {
+        LevelChange.OnLevelUp -= UpdateLocalCounter;
+    }
+
+    private void UpdateLocalCounter(int newLevel)
+    {
+        counter = newLevel;
+
+    }
 }

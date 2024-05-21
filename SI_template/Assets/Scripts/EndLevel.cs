@@ -1,7 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class EndLevel : MonoBehaviour
 {
@@ -14,13 +15,28 @@ public class EndLevel : MonoBehaviour
     public GameObject currEndTile;
     public GameObject nextEndTile;
 
+    public TextMeshProUGUI levelCounterObj;
+    public int counter = 0;
+
     public AnimationCurve speedCurve;
     public float duration = 2f;
     public bool IsMultiLevel;
+
     void Start()
     {
         // Ensure time scale is set to 1
         Time.timeScale = 1;
+        if (int.TryParse(levelCounterObj.text, out counter))
+        {
+            // Successfully converted the text to an integer
+            Debug.Log("The level is: " + counter);
+        }
+        else
+        {
+            // Handle the case where the text could not be converted
+            
+            //Debug.LogError("The text in levelCounter is not a valid integer.");
+        }
     }
 
 
@@ -38,6 +54,9 @@ public class EndLevel : MonoBehaviour
                 nextEndTile.SetActive(true);
                 MovePathsTemp(currLevel, nextLevel);
                 //StartCoroutine(TransitionLevels(currLevel, nextLevel));
+                counter++;
+                levelCounterObj.text = counter.ToString();
+                LevelChange.LevelUp(counter);
                 currEndTile.SetActive(false);
 
             }
