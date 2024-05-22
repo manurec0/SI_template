@@ -62,23 +62,24 @@ public class HandCrankController : MonoBehaviour
             }
             MoveTarget(target, rb.angularVelocity);
         }
-
-        void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Player2"))
-                playerOnWheel = true;
-        }
-
-        void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Player2"))
-                playerOnWheel = false;
-        }
-
-        void MoveTarget(GameObject platform, Vector3 dir)
-        {
-            platform.transform.position += dir;
-        }
-
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Player2"))
+            playerOnWheel = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Player2"))
+            playerOnWheel = false;
+    }
+
+    private void MoveTarget(GameObject platform, Vector3 dir)
+    {
+        platform.transform.position += dir;
+    }
+
+    
 }
