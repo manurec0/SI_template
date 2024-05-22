@@ -115,8 +115,6 @@ public class StartAgainLevel : MonoBehaviour
 
             GetComponent<MonoBehaviour>().enabled = false;
 
-
-
         }
 
     }

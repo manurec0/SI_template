@@ -9,17 +9,12 @@ public class EndLevel : MonoBehaviour
     private bool player1IsEnd = false;
     private bool player2IsEnd = false;
 
-    public GameObject currLevel;
-    public GameObject nextLevel;
-
     public GameObject currEndTile;
     public GameObject nextEndTile;
 
     public TextMeshProUGUI levelCounterObj;
     public int counter = 0;
 
-    public AnimationCurve speedCurve;
-    public float duration = 2f;
     public bool IsMultiLevel;
 
     void Start()
@@ -30,12 +25,6 @@ public class EndLevel : MonoBehaviour
         {
             // Successfully converted the text to an integer
             Debug.Log("The level is: " + counter);
-        }
-        else
-        {
-            // Handle the case where the text could not be converted
-            
-            //Debug.LogError("The text in levelCounter is not a valid integer.");
         }
     }
 
@@ -52,12 +41,13 @@ public class EndLevel : MonoBehaviour
             else if (nextEndTile)
             {
                 nextEndTile.SetActive(true);
-                MovePathsTemp(currLevel, nextLevel);
-                //StartCoroutine(TransitionLevels(currLevel, nextLevel));
                 counter++;
                 levelCounterObj.text = counter.ToString();
                 LevelChange.LevelUp(counter);
                 currEndTile.SetActive(false);
+
+                //make the change of levels and is true as we have lost and want to go up
+                LevelChange.TriggerMoveObject(false);
 
             }
             else
@@ -99,65 +89,9 @@ public class EndLevel : MonoBehaviour
         }
     }
 
-    void MovePathsTemp(GameObject currentLevel, GameObject nextLevel)
-    {
-        currentLevel.transform.position += new Vector3(0, -1000, 0);
-        nextLevel.transform.position += new Vector3(0, -1000, 0);
 
-    }
+   
 
-
-    //doesnt work rn
-
-    IEnumerator TransitionLevels(GameObject currentLevel, GameObject nextLevel)
-    {
-        Debug.Log("Transition starting...");
-        float startTime = Time.time;
-        Vector3 currentLevelStartPos = currentLevel.transform.position;
-        Vector3 nextLevelStartPos = nextLevel.transform.position;
-        Vector3 currentLevelEndPos = currentLevelStartPos + new Vector3(0, -1000, 0);
-        Vector3 nextLevelEndPos = nextLevelStartPos + new Vector3(0, -1000, 0);
-
-        Debug.Log($"Start Time: {startTime}, Duration: {duration}, currentLevelStartPos: {currentLevelStartPos}, nextLevelStartPos: {nextLevelStartPos}, currentLevelEndPos: {currentLevelEndPos}, nextLevelEndPos: {nextLevelEndPos}, Time.time: {Time.time}");
-
-        while (Time.time < startTime + duration)
-        {
-            float currentTime = Time.time;
-            float t = (currentTime - startTime) / duration;
-            float curveValue = speedCurve.Evaluate(t);
-
-            Debug.Log($"Current Time: {currentTime}, t: {t}, curveValue: {curveValue}");
-
-            currentLevel.transform.position = Vector3.Lerp(currentLevelStartPos, currentLevelEndPos, curveValue);
-            nextLevel.transform.position = Vector3.Lerp(nextLevelStartPos, nextLevelEndPos, curveValue);
-            yield return null; // Pause here and continue next frame
-        }
-
-        currentLevel.transform.position = currentLevelEndPos;
-        nextLevel.transform.position = nextLevelEndPos;
-        Debug.Log("Transition finished.");
-
-
-        /*
-        float startTime = Time.time;
-        Vector3 currentLevelStartPos = currentLevel.transform.position;
-        Vector3 nextLevelStartPos = nextLevel.transform.position;
-        Vector3 currentLevelEndPos = currentLevelStartPos + new Vector3(0, -1000, 0);
-        Vector3 nextLevelEndPos = nextLevelStartPos + new Vector3(0, -1000, 0);
-
-        while (Time.time < startTime + duration)
-        {
-            float t = (Time.time - startTime) / duration;
-            float curveValue = speedCurve.Evaluate(t);
-            currentLevel.transform.position = Vector3.Lerp(currentLevelStartPos, currentLevelEndPos, curveValue);
-            nextLevel.transform.position = Vector3.Lerp(nextLevelStartPos, nextLevelEndPos, curveValue);
-            yield return null;
-        }
-
-        currentLevel.transform.position = currentLevelEndPos;
-        nextLevel.transform.position = nextLevelEndPos;
-        */
-    }
     void OnEnable()
     {
         LevelChange.OnLevelUp += UpdateLocalCounter;

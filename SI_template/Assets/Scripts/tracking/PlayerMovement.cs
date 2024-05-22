@@ -7,19 +7,12 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject levelListObj;
-    private List<GameObject> levelsList;
-    public AnimationCurve speedCurve;
-    public float duration = 2f;
-
     public GameObject manageLevels;
-
     public TextMeshProUGUI levelCounterObj;
     private int counter;
 
     private void Start()
     {
-        levelsList = GetChildGameObjects(levelListObj.transform);
         counter = 0;
         levelCounterObj.text = counter.ToString();
     }
@@ -35,12 +28,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.CompareTag("outPath"))
         {
-
-            StartCoroutine(TransitionLevels(levelsList[counter - 1], levelsList[counter]));
+            TransitionLevels();
         }
     }
-
-
 
 
     public void setPosition(Vector3 pos)
@@ -56,15 +46,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    IEnumerator TransitionLevels(GameObject prevLevel, GameObject currentLevel)
+    void TransitionLevels()
     {
         Transform prevTrans = manageLevels.transform.GetChild(counter-1);
         Transform currTrans = manageLevels.transform.GetChild(counter);
         GameObject prevEndTile = prevTrans.gameObject;
         GameObject currEndTile = currTrans.gameObject;
         counter--;
-
-
 
 
         //change endTiles 
@@ -95,30 +83,13 @@ public class PlayerMovement : MonoBehaviour
         foreach (BoxCollider boxCollider in boxCollidersStart) boxCollider.enabled = true;
 
         //activate the script
-        startTiles.GetComponent<MonoBehaviour>().enabled = true; 
+        startTiles.GetComponent<MonoBehaviour>().enabled = true;
 
+        //make the change of levels and is true as we have lost and want to go up
+        LevelChange.TriggerMoveObject(true);
 
-        //animation of falling currently theres no animation but it does the change of level...
-        levelCounterObj.text = counter.ToString();
-        float startTime = Time.time;
-        Vector3 currentLevelStartPos = currentLevel.transform.position;
-        Vector3 nextLevelStartPos = prevLevel.transform.position;
-        Vector3 currentLevelEndPos = currentLevelStartPos + new Vector3(0, 1000, 0);
-        Vector3 nextLevelEndPos = nextLevelStartPos + new Vector3(0, 1000, 0);
-
-        while (Time.time < startTime + duration)
-        {
-            float t = (Time.time - startTime) / duration;
-            float curveValue = speedCurve.Evaluate(t);
-            currentLevel.transform.position = Vector3.Lerp(currentLevelEndPos, currentLevelStartPos, curveValue);
-            prevLevel.transform.position = Vector3.Lerp(nextLevelEndPos, nextLevelStartPos,  curveValue);
-            yield return null;
-        }
-
-        currentLevel.transform.position = currentLevelEndPos;
-        prevLevel.transform.position = nextLevelEndPos;
+        
     }
-
 
 
     void OnEnable()
@@ -137,17 +108,5 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    List<GameObject> GetChildGameObjects(Transform parent)
-    {
-        List<GameObject> childObjects = new List<GameObject>();
-
-        // Iterate through all children of the parent object
-        foreach (Transform child in parent)
-        {
-            // Add each child GameObject to the list
-            childObjects.Add(child.gameObject);
-        }
-
-        return childObjects;
-    }
+   
 }
