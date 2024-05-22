@@ -1757,12 +1757,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb442334999fb84487442a2b692a37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugPos1: {x: 0, y: 0, z: 0}
-  DebugPos2: {x: 0, y: 0, z: 0}
-  Paco1: {fileID: 0}
-  Paco2: {fileID: 0}
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  manageLevels: {fileID: 0}
+  levelCounterObj: {fileID: 0}
 --- !u!65 &610894713
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3029,12 +3025,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb442334999fb84487442a2b692a37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugPos1: {x: 0, y: 0, z: 0}
-  DebugPos2: {x: 0, y: 0, z: 0}
-  Paco1: {fileID: 0}
-  Paco2: {fileID: 0}
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  manageLevels: {fileID: 0}
+  levelCounterObj: {fileID: 0}
 --- !u!65 &827901866
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7753,7 +7745,7 @@ MonoBehaviour:
   cameras:
   - {fileID: 1148234749}
   - {fileID: 1379354406}
-  enableTracking: 0
+  enableTracking: 1
   numberOfPlayers: 2
   numberOfBaseStations: 4
   screenToWorldPosTracking: 1
