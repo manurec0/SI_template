@@ -45,8 +45,8 @@ public class StartAgainLevel : MonoBehaviour
         EndTilesObj = endTilesTransform.gameObject;
         Transform redTrans = endTilesTransform.GetChild(0);
         Transform blueTrans = endTilesTransform.GetChild(1);
-        EndTileRed = redTrans.GetChild(0).gameObject.GetComponent<BoxCollider>();
-        EndTileBlue = blueTrans.GetChild(0).gameObject.GetComponent<BoxCollider>();
+        //EndTileRed = redTrans.GetChild(0).gameObject.GetComponent<BoxCollider>();
+        //EndTileBlue = blueTrans.GetChild(0).gameObject.GetComponent<BoxCollider>();
         //EndTileBlue.enabled = false;
         //EndTileRed.enabled = false;
 
