@@ -26,11 +26,13 @@ public class HandCrankController : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        playerOnWheel = true;
+        if (other.gameObject.CompareTag("Player")||other.gameObject.CompareTag("Player2"))
+            playerOnWheel = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        playerOnWheel = false;
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Player2"))
+            playerOnWheel = false;
     }
 }

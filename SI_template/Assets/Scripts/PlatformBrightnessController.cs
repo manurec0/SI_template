@@ -19,21 +19,27 @@ public class PlatformBrightnessController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!isChanging)
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Player2"))
         {
-            isChanging = true;
-            transitionTime = 0f;
-            StartCoroutine(ChangeColor(targetColor));
+            if (!isChanging)
+            {
+                isChanging = true;
+                transitionTime = 0f;
+                StartCoroutine(ChangeColor(targetColor));
+            }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (isChanging)
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Player2"))
         {
-            isChanging = false;
-            transitionTime = 0f;
-            StartCoroutine(ChangeColor(originalColor));
+            if (isChanging)
+            {
+                isChanging = false;
+                transitionTime = 0f;
+                StartCoroutine(ChangeColor(originalColor));
+            }
         }
     }
 
