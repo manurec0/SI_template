@@ -239,6 +239,10 @@ MonoBehaviour:
   startPos: {x: 60, y: 0, z: 5}
   endPos: {x: 60, y: 1000, z: 30}
   direction: {x: 0, y: 0, z: 1}
+  isMoving: 0
+  movingLoop: {fileID: 0}
+  startUp: {fileID: 0}
+  end: {fileID: 0}
 --- !u!1 &66022540
 GameObject:
   m_ObjectHideFlags: 0
@@ -11144,7 +11148,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cf5a0ac0e0a684e2590e5d0d6f86b9c9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -13753,6 +13757,10 @@ MonoBehaviour:
   startPos: {x: 40, y: 0, z: 85}
   endPos: {x: 30, y: 1000, z: 80}
   direction: {x: -1, y: 0, z: 0}
+  isMoving: 0
+  movingLoop: {fileID: 0}
+  startUp: {fileID: 0}
+  end: {fileID: 0}
 --- !u!1 &2122326110
 GameObject:
   m_ObjectHideFlags: 0
