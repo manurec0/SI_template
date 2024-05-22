@@ -7,8 +7,8 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    public List<GameObject> levelsList;
+    public GameObject levelListObj;
+    private List<GameObject> levelsList;
     public AnimationCurve speedCurve;
     public float duration = 2f;
 
@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        levelsList = GetChildGameObjects(levelListObj.transform);
         counter = 0;
         levelCounterObj.text = counter.ToString();
     }
@@ -134,5 +135,19 @@ public class PlayerMovement : MonoBehaviour
     {
         counter = newLevel;
 
+    }
+
+    List<GameObject> GetChildGameObjects(Transform parent)
+    {
+        List<GameObject> childObjects = new List<GameObject>();
+
+        // Iterate through all children of the parent object
+        foreach (Transform child in parent)
+        {
+            // Add each child GameObject to the list
+            childObjects.Add(child.gameObject);
+        }
+
+        return childObjects;
     }
 }

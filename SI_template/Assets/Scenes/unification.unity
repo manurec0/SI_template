@@ -4540,7 +4540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 253906958}
   message: {fileID: 1920468987}
-  level: {fileID: 0}
+  level: {fileID: 657430286}
 --- !u!65 &660178474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7133,9 +7133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb442334999fb84487442a2b692a37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelsList:
-  - {fileID: 1727564326}
-  - {fileID: 0}
+  levelListObj: {fileID: 1754898276}
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -8833,9 +8831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb442334999fb84487442a2b692a37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelsList:
-  - {fileID: 1727564326}
-  - {fileID: 0}
+  levelListObj: {fileID: 1754898276}
   speedCurve:
     serializedVersion: 2
     m_Curve:
