@@ -24,8 +24,6 @@ public class PlayerPosition : MonoBehaviour
         int.TryParse(levelCounterObj.text, out int counter);
 
         levelMsg.text = "Level: " + (counter + 1).ToString();
-        //LevelChange.LevelUp(counter);
-
 
     }
 }

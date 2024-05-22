@@ -5,15 +5,11 @@ using UnityEngine;
 public class platformMovingController : MonoBehaviour, IPlateAction
 {
     public float speed = 2.0f;
-    //private float startPositionZ = 85.0f;
-    //private float endPositionZ = 75.0f;
-    private float startPositionZ;
-    public float endPositionZ;
 
-    public Vector3 startPos;
     public Vector3 endPos;
     public Vector3 direction;
 
+    private Vector3 startPos;
     private Vector3 debugCurrPos;
     private float debugDistanceStart;
     private float debugDistanceEnd;
@@ -31,7 +27,6 @@ public class platformMovingController : MonoBehaviour, IPlateAction
     void Start()
     {
         startPos = transform.position;
-        startPositionZ = startPos.z;
         debugCurrPos = startPos;
         movingLoop.Play();
 

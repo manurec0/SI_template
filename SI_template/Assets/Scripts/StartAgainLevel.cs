@@ -15,6 +15,9 @@ public class StartAgainLevel : MonoBehaviour
     private GameObject colliders;
     private GameObject EndTilesObj;
 
+    //private BoxCollider EndTileRed;
+    //private BoxCollider EndTileBlue;
+
     //if for a certain level one of the paths doesnt have a moving or cracked tile the corresponding list will be empty
     private List<GameObject> movingObjs1;
     private List<GameObject> crackedObjs1;
@@ -40,6 +43,14 @@ public class StartAgainLevel : MonoBehaviour
 
         Transform endTilesTransform = parentTransform.Find("EndTiles");
         EndTilesObj = endTilesTransform.gameObject;
+        Transform redTrans = endTilesTransform.GetChild(0);
+        Transform blueTrans = endTilesTransform.GetChild(1);
+        //EndTileRed = redTrans.GetChild(0).gameObject.GetComponent<BoxCollider>();
+        //EndTileBlue = blueTrans.GetChild(0).gameObject.GetComponent<BoxCollider>();
+        //EndTileBlue.enabled = false;
+        //EndTileRed.enabled = false;
+
+
 
         //disable those pesky colliders of the special tiles 
         Transform player1PathTrans = level.transform.GetChild(0); 
@@ -102,6 +113,8 @@ public class StartAgainLevel : MonoBehaviour
             BoxCollider[] boxCollidersEnd = EndTilesObj.GetComponents<BoxCollider>();
             foreach (BoxCollider boxCollider in boxCollidersEnd) boxCollider.enabled = true;
 
+            //EndTileBlue.enabled = true;
+            //EndTileRed.enabled = true;
             // remove message
             message.SetActive(false);
             canvas.SetActive(true);
