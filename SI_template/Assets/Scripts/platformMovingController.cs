@@ -9,13 +9,16 @@ public class platformMovingController : MonoBehaviour, IPlateAction
     //private float endPositionZ = 75.0f;
     private float startPositionZ;
     public float endPositionZ;
+
     public Vector3 startPos;
     public Vector3 endPos;
     public Vector3 direction;
+
     private Vector3 debugCurrPos;
-    public float debugDistanceStart;
-    public float debugDistanceEnd;
+    private float debugDistanceStart;
+    private float debugDistanceEnd;
     private Vector3 currDirection;
+
     //private bool movingForward = true;
     private bool playerOnButton = false;
     public bool isMoving;
@@ -49,38 +52,19 @@ public class platformMovingController : MonoBehaviour, IPlateAction
             }
             if (debugDistanceEnd < 0.25f)
                 currDirection = direction * -1;
+
             //move platform
+            startPos.y = transform.position.y;
             debugCurrPos = transform.position;
+            endPos.y = debugCurrPos.y;
             debugDistanceStart = Vector3.Distance(debugCurrPos, startPos);
             debugDistanceEnd = Vector3.Distance(debugCurrPos, endPos);
             transform.position += currDirection * speed * Time.deltaTime;
-            //if (movingForward)
-            //{
-            //    // Move forward
-            //    if (transform.position.z > endPositionZ)
-            //    {
-            //        transform.position -= new Vector3(0, 0, speed * Time.deltaTime);
-            //    }
-            //    else
-            //    {
-            //        movingForward = false;
-            //    }
-            //}
-            //else
-            //{
-            //    // Move backward
-            //    if (transform.position.z < startPositionZ)
-            //    {
-            //        transform.position += new Vector3(0, 0, speed * Time.deltaTime);
-            //    }
-            //    else
-            //    {
-            //        movingForward = true;
-            //    }
-            //}
 
             
         }
+
+        //remove the collider fall if platform placed correctly
         if ((transform.position - endPos).magnitude < 0.5f && playerOnButton)
         {
             boxCollider.enabled = false;
@@ -88,7 +72,6 @@ public class platformMovingController : MonoBehaviour, IPlateAction
         else
         {
             boxCollider.enabled = true;
-
         }
     }
 
