@@ -13,7 +13,7 @@ public class EndLevel : MonoBehaviour
     public GameObject nextEndTile;
 
     public TextMeshProUGUI levelCounterObj;
-    public int counter = 0;
+    private int counter = 0;
 
     public bool IsMultiLevel;
 
