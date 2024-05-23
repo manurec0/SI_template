@@ -402,14 +402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb442334999fb84487442a2b692a37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelListObj: {fileID: 0}
-  speedCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  duration: 2
   manageLevels: {fileID: 0}
   levelCounterObj: {fileID: 0}
 --- !u!65 &26066002
@@ -1300,14 +1292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb442334999fb84487442a2b692a37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelListObj: {fileID: 0}
-  speedCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  duration: 2
   manageLevels: {fileID: 0}
   levelCounterObj: {fileID: 0}
 --- !u!65 &329124860
@@ -3937,7 +3921,7 @@ MonoBehaviour:
   cameras:
   - {fileID: 1304382243}
   - {fileID: 1288256042}
-  enableTracking: 0
+  enableTracking: 1
   numberOfPlayers: 2
   numberOfBaseStations: 4
   screenToWorldPosTracking: 1
