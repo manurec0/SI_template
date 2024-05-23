@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         GameObject currEndTile = currTrans.gameObject;
         counter--;
 
+        levelCounterObj.text = counter.ToString();
 
         //change endTiles 
         prevEndTile.SetActive(true);
