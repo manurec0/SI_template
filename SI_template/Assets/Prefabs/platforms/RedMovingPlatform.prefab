@@ -43,7 +43,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 0, z: 10}
+  m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 50, y: 0, z: 65}
 --- !u!64 &3320542145842826613
 MeshCollider:
@@ -86,29 +86,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetColor: {r: 1, g: 0.33333334, b: 0.3372549, a: 1}
   transitionDuration: 1
---- !u!114 &7906433315798256421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6463812092679457842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d25e004fd33517499cefef374e561b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  endPositionZ: 75
-  startPos: {x: 70, y: 0, z: 85}
-  endPos: {x: 70, y: 0, z: 75}
-  direction: {x: 0, y: 0, z: -1}
-  debugDistanceStart: 0
-  debugDistanceEnd: 0
-  isMoving: 0
-  movingLoop: {fileID: 2271701129712575536}
-  startUp: {fileID: 5673134638957509638}
-  end: {fileID: 8537192316311930324}
 --- !u!82 &2271701129712575536
 AudioSource:
   m_ObjectHideFlags: 0
@@ -469,6 +446,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7906433315798256421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463812092679457842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d25e004fd33517499cefef374e561b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  endPos: {x: 70, y: 0, z: 75}
+  direction: {x: 0, y: 0, z: -1}
+  isMoving: 0
+  movingLoop: {fileID: 2271701129712575536}
+  startUp: {fileID: 5673134638957509638}
+  end: {fileID: 8537192316311930324}
 --- !u!1001 &6157963340242334051
 PrefabInstance:
   m_ObjectHideFlags: 0
