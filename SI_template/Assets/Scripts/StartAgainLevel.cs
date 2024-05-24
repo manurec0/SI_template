@@ -5,25 +5,27 @@ using UnityEngine;
 public class StartAgainLevel : MonoBehaviour
 {
 
-    private bool player1IsStart = false;
-    private bool player2IsStart = false;
+    private bool player1IsStart;
+    private bool player2IsStart;
 
     public GameObject canvas;
     public GameObject message;
     public GameObject level; //level path to disable colliders of moving and cracked tiles
 
     private GameObject colliders;
-    private GameObject EndTilesObj;
-
-    //private BoxCollider EndTileRed;
-    //private BoxCollider EndTileBlue;
+    private GameObject endTilesObj;
 
     //if for a certain level one of the paths doesnt have a moving or cracked tile the corresponding list will be empty
     private List<GameObject> movingObjs1;
     private List<GameObject> crackedObjs1;
+    private List<GameObject> buttonObjs1;
+    private List<GameObject> pressureObjs1;
 
     private List<GameObject> movingObjs2;
     private List<GameObject> crackedObjs2;
+    private List<GameObject> buttonObjs2;
+    private List<GameObject> pressureObjs2;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -31,44 +33,30 @@ public class StartAgainLevel : MonoBehaviour
         message.SetActive(true);
         canvas.SetActive(false);
 
-
         player1IsStart = false;
         player2IsStart = false;
 
-
         //initialize the gameObjects
-        Transform parentTransform = transform.parent; //get the transform of level x in ManageEndTiles
-        Transform childTransform = parentTransform.Find("colliders"); 
-        colliders = childTransform.gameObject;
+        var parentTransform = transform.parent; 
+        colliders = parentTransform.Find("colliders").gameObject;
+        endTilesObj = parentTransform.Find("EndTiles").gameObject;
 
-        Transform endTilesTransform = parentTransform.Find("EndTiles");
-        EndTilesObj = endTilesTransform.gameObject;
-        Transform redTrans = endTilesTransform.GetChild(0);
-        Transform blueTrans = endTilesTransform.GetChild(1);
-        //EndTileRed = redTrans.GetChild(0).gameObject.GetComponent<BoxCollider>();
-        //EndTileBlue = blueTrans.GetChild(0).gameObject.GetComponent<BoxCollider>();
-        //EndTileBlue.enabled = false;
-        //EndTileRed.enabled = false;
-
-
-
-        //disable those pesky colliders of the special tiles 
-        Transform player1PathTrans = level.transform.GetChild(0); 
-        Transform movingTiles1Trans = player1PathTrans.GetChild(0);
-        Transform crackedTiles1Trans = player1PathTrans.GetChild(1);
-        movingObjs1 = GetChildGameObjects(movingTiles1Trans);
-        crackedObjs1 = GetChildGameObjects(crackedTiles1Trans);
-
-        Transform player2PathTrans = level.transform.GetChild(1);
-        Transform movingTiles2Trans = player2PathTrans.GetChild(0);
-        Transform crackedTiles2Trans = player2PathTrans.GetChild(1);
-        movingObjs2 = GetChildGameObjects(movingTiles2Trans);
-        crackedObjs2 = GetChildGameObjects(crackedTiles2Trans);
+        InitializeSpecialTiles(0, out movingObjs1, out crackedObjs1, out buttonObjs1, out pressureObjs1);
+        InitializeSpecialTiles(1, out movingObjs2, out crackedObjs2, out buttonObjs2, out pressureObjs2);
 
         //disable the colliders
-        changeAllColliders();
+        ChangeAllColliders(false);
 
 
+    }
+
+    void InitializeSpecialTiles(int idx, out List<GameObject> move, out List<GameObject> cracked, out List<GameObject> button, out List<GameObject> pressure)
+    {
+        var playerPath = level.transform.GetChild(idx);
+        move = GetChildGameObjects(playerPath.GetChild(0));
+        cracked = GetChildGameObjects(playerPath.GetChild(1));
+        button = GetChildGameObjects(playerPath.GetChild(2));
+        pressure = GetChildGameObjects(playerPath.GetChild(3));
     }
 
     void OnTriggerEnter(Collider other)
@@ -106,69 +94,55 @@ public class StartAgainLevel : MonoBehaviour
         //both players are at the start of the level so they can restart the level
         if (player1IsStart && player2IsStart)
         {
-            //activate colliders
             colliders.SetActive(true);
-
-            //activate colliders end tiles
-            BoxCollider[] boxCollidersEnd = EndTilesObj.GetComponents<BoxCollider>();
-            foreach (BoxCollider boxCollider in boxCollidersEnd) boxCollider.enabled = true;
-
-            //EndTileBlue.enabled = true;
-            //EndTileRed.enabled = true;
-            // remove message
+            var boxCollidersEnd = endTilesObj.GetComponents<BoxCollider>();
+            foreach (var boxCollider in boxCollidersEnd) boxCollider.enabled = true;
+            
             message.SetActive(false);
             canvas.SetActive(true);
+            
+            var boxCollidersStart = GetComponents<BoxCollider>();
+            foreach (var boxCollider in boxCollidersStart) boxCollider.enabled = false;
 
-            //disable colliders start tiles
-            BoxCollider[] boxCollidersStart = GetComponents<BoxCollider>();
-            foreach (BoxCollider boxCollider in boxCollidersStart) boxCollider.enabled = false;
+            ChangeAllColliders(true);
 
-            //activate colliders moving & and cracked tiles
-            changeAllColliders();
-
-            GetComponent<MonoBehaviour>().enabled = false;
+            enabled = false;
 
         }
 
     }
 
-    void changeAllColliders()
+    void ChangeAllColliders(bool activate)
     {
-        changeBoxColliderForCrackedTiles(crackedObjs1);
-        changeBoxColliderForMovingPlatforms(movingObjs1);
-        changeBoxColliderForCrackedTiles(crackedObjs2);
-        changeBoxColliderForMovingPlatforms(movingObjs2);
+        ToggleColliderGeneric(crackedObjs1, activate);
+        ToggleColliderMovingPlat(movingObjs1, activate);
+        ToggleColliderGeneric(buttonObjs1, activate);
+        ToggleColliderGeneric(pressureObjs1, activate);
+        
+        ToggleColliderGeneric(crackedObjs2, activate);
+        ToggleColliderMovingPlat(movingObjs2, activate);
+        ToggleColliderGeneric(buttonObjs2, activate);
+        ToggleColliderGeneric(pressureObjs2, activate);
     }
-
-    void changeBoxColliderForCrackedTiles(List<GameObject> crackedTilesList)
+    
+    private void ToggleColliderGeneric(List<GameObject> tiles, bool activate)
     {
-
-        foreach(GameObject obj in crackedTilesList)
+        foreach(var obj in tiles)
         {
-            Transform crackedTile = obj.transform.GetChild(0);
-            Transform cracked = crackedTile.GetChild(0);
-            BoxCollider tmpCollider = cracked.gameObject.GetComponent<BoxCollider>();
-            tmpCollider.enabled = !tmpCollider.enabled;
-
+            var cracked = obj.transform.GetChild(0).GetChild(0);
+            cracked.gameObject.GetComponent<BoxCollider>().enabled = activate;
         }
     }
 
-    void changeBoxColliderForMovingPlatforms(List<GameObject> movingPlatList)
+    private void ToggleColliderMovingPlat(List<GameObject> movingPlatList, bool activate)
     {
-        foreach(GameObject obj in movingPlatList)
+        foreach(var obj in movingPlatList)
         {
-            Transform tileTransform = obj.transform.GetChild(0);
-            MonoBehaviour script = tileTransform.gameObject.GetComponent<MonoBehaviour>();
-            script.enabled = !script.enabled;
-
-            BoxCollider tmpCollider = obj.GetComponent<BoxCollider>();
-
-            tmpCollider.enabled = !tmpCollider.enabled;
+            obj.transform.GetChild(0).gameObject.GetComponent<MonoBehaviour>().enabled = activate;
+            obj.GetComponent<BoxCollider>().enabled = activate;
         }
     }
-
-
-    List<GameObject> GetChildGameObjects(Transform parent)
+    private List<GameObject> GetChildGameObjects(Transform parent)
     {
         List<GameObject> childObjects = new List<GameObject>();
 

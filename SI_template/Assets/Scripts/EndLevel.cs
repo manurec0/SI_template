@@ -44,8 +44,11 @@ public class EndLevel : MonoBehaviour
                 counter++;
                 levelCounterObj.text = counter.ToString();
                 LevelChange.LevelUp(counter);
+                Debug.Log($"{currEndTile.name}: {currEndTile.transform.GetChild(2).name} {currEndTile.transform.GetChild(2).position}");
+
                 currEndTile.transform.GetChild(2).position = new Vector3(0, -1000, 0);
                 currEndTile.SetActive(false);
+                Debug.Log($"{currEndTile.name}: {currEndTile.transform.GetChild(2).name} {currEndTile.transform.GetChild(2).position}");
 
                 LevelChange.TriggerMoveObject(false, nextEndTile.transform.GetChild(2));
 

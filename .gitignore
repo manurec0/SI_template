@@ -69,3 +69,4 @@ SI_template/InteractiveSystemsTemplate_Data/*
 SI_template/InteractiveSystemsTemplate.exe
 SI_template/UnityCrashHandler64.exe
 SI_template/UnityPlayer.dll
+/SI_template/.idea
