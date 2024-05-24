@@ -56,8 +56,6 @@ public class PlayerMovement : MonoBehaviour
         counter--;
         levelCounterObj.text = counter.ToString();
 
-        levelCounterObj.text = counter.ToString();
-
         //change endTiles 
         prevEndTile.SetActive(true);
         LevelChange.LevelUp(counter); //this should reset the local variables of everything (for the end tiles prev if u fell level 1 wouldnt get updated as it was disabled lets see)
