@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject manageLevels;
     public TextMeshProUGUI levelCounterObj;
-    private int counter;
+    public int counter;
 
     private void Start()
     {
@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
         GameObject prevEndTile = prevTrans.gameObject;
         GameObject currEndTile = currTrans.gameObject;
         counter--;
+        levelCounterObj.text = counter.ToString();
 
         levelCounterObj.text = counter.ToString();
 
@@ -85,8 +86,9 @@ public class PlayerMovement : MonoBehaviour
         //activate the script
         startTiles.GetComponent<MonoBehaviour>().enabled = true;
 
+        
         //make the change of levels and is true as we have lost and want to go up
-        LevelChange.TriggerMoveObject(true);
+        LevelChange.TriggerMoveObject(true, endTilesTransform);
 
         
     }

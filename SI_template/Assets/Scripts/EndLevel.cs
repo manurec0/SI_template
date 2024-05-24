@@ -44,10 +44,10 @@ public class EndLevel : MonoBehaviour
                 counter++;
                 levelCounterObj.text = counter.ToString();
                 LevelChange.LevelUp(counter);
+                currEndTile.transform.GetChild(2).position = new Vector3(0, -1000, 0);
                 currEndTile.SetActive(false);
 
-                //make the change of levels and is true as we have lost and want to go up
-                LevelChange.TriggerMoveObject(false);
+                LevelChange.TriggerMoveObject(false, nextEndTile.transform.GetChild(2));
 
             }
             else

@@ -17,25 +17,32 @@ public class ObjectMover : MonoBehaviour
         LevelChange.OnMoveObject -= MoveObject;
     }
 
-    // Method to handle the movement with direction
-    private void MoveObject(bool moveUp)
+    // Method to handle the movement with direction and an additional GameObject
+    private void MoveObject(bool moveUp, Transform gameObj)
     {
-        Vector3 targetPosition = transform.position + new Vector3(0, moveUp ? 1000 : -1000, 0);
-        StartCoroutine(AnimateMovement(transform.position, targetPosition, moveDuration));
+        Vector3 targetPositionSelf = transform.position + new Vector3(0, moveUp ? 1000 : -1000, 0);
+        Vector3 targetPositionObj = gameObj.position + new Vector3(0, moveUp ? 1000 : -1000, 0);
+
+        StartCoroutine(AnimateMovement(transform, targetPositionSelf, gameObj, targetPositionObj, moveDuration));
     }
 
-    // Coroutine to animate the movement
-    private IEnumerator AnimateMovement(Vector3 start, Vector3 end, float duration)
+    // Coroutine to animate the movement of both objects
+    private IEnumerator AnimateMovement(Transform startTransform, Vector3 endPositionSelf, Transform gameObjTransform, Vector3 endPositionObj, float duration)
     {
         float elapsedTime = 0;
 
+        Vector3 startPositionSelf = startTransform.position;
+        Vector3 startPositionObj = gameObjTransform.position;
+
         while (elapsedTime < duration)
         {
-            transform.position = Vector3.Lerp(start, end, elapsedTime / duration);
+            startTransform.position = Vector3.Lerp(startPositionSelf, endPositionSelf, elapsedTime / duration);
+            gameObjTransform.position = Vector3.Lerp(startPositionObj, endPositionObj, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        transform.position = end;
+        startTransform.position = endPositionSelf;
+        gameObjTransform.position = endPositionObj;
     }
 }
