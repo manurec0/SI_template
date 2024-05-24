@@ -83,14 +83,9 @@ public class PlayerMovement : MonoBehaviour
 
         //activate the script
         startTiles.GetComponent<MonoBehaviour>().enabled = true;
-        Debug.Log($"{currEndTile.name}: {endTiles.name} {endTilesTransform.position}");
         //make the change of levels and is true as we have lost and want to go up
         currEndTile.transform.GetChild(2).position = new Vector3(0, 1000, 0);
-
         LevelChange.TriggerMoveObject(true, endTilesTransform);
-
-        Debug.Log($"{currEndTile.name}: {endTiles.name} {endTilesTransform.position}");
-
     }
 
 
