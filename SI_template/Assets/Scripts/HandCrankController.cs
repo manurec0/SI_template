@@ -1,70 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class HandCrankController : MonoBehaviour
 {
-    public GameObject target;
-    public Vector3 moveTargetDir;
+    public GameObject target1;
+    public GameObject target2;
     public GameObject player;
-    public Vector3 angularVelocity;
-    private Rigidbody rb;
+
     public float angle;
-    private float angleStart;
-    public float angleTiles = -90;
 
-    private Vector3 tile1Other;
-    private Vector3 tile2Other;
-    private Transform tile1;
-    private Transform tile2;
+    public Quaternion angle1;
+    public Quaternion angle2;
 
-    private IPlateAction actionInterface;
+    public float debugRotation1;
+    public float debugRotation2;
+
+    private Rigidbody rb;
+    private bool locked;
+
     bool playerOnWheel;
     // Start is called before the first frame update
-
     void Start()
     {
-        angle = transform.rotation.x;
-        angleStart = transform.rotation.x;
-        tile1 = target.transform.GetChild(0);
-        tile2 = target.transform.GetChild(1);
-        tile1Other = new Vector3(tile1.rotation.x, tile1.rotation.y, tile1.rotation.w);
-        tile2Other = new Vector3(tile2.rotation.x, tile2.rotation.y, tile2.rotation.w);
-
+        angle = transform.rotation.eulerAngles.y;
         playerOnWheel = false;
         rb = GetComponent<Rigidbody>();
+        locked = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        angularVelocity = rb.velocity;
+        
+        angle = transform.rotation.eulerAngles.y;
+        angle1 = Quaternion.Euler(0,0,angle);
+        angle2 = Quaternion.Euler(0, 180, angle);
+        debugRotation1 = target1.transform.rotation.z;
+        debugRotation2 = target2.transform.rotation.z;
         if (playerOnWheel)
         {
-            //transform.LookAt(player.transform);
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
-            if (playerOnWheel && angleTiles != 0)
+            if ((angle < 360f && angle > 180f) && (!locked))
             {
-                transform.LookAt(player.transform);
-                //aqui posa la traslacio al angle z nomes els dos objectes estan igual llavors hauries de posar el mateix valor no es en plan que ho hagis de fer al reves
-                angle = transform.rotation.x;
-
-                angleTiles += (angle) / 2;
-                Debug.Log($"{tile1.rotation}");
-                tile1.rotation.Set(tile1Other.x, tile1Other.y, angleTiles, tile1Other.z);
-                tile2.rotation.Set(tile2Other.x, tile2Other.y, angleTiles, tile2Other.z);
-
-                //tile1.LookAt(transform) si gires x graus el transform que la tile giri x/2 o algo aixi 
+                target1.transform.rotation = angle1;
+                target2.transform.rotation = angle2;
             }
-            if (angleTiles == 0)
-            {
-                target.GetComponent<BoxCollider>().enabled = false;
-            }
-            MoveTarget(target, rb.angularVelocity);
+
+            else
+                locked = true;
         }
-    }
+        if (locked)
+            target1.GetComponentInParent<BoxCollider>().enabled = false;
 
-    private void OnTriggerEnter(Collider other)
+    }
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Player2"))
             playerOnWheel = true;
@@ -76,10 +68,8 @@ public class HandCrankController : MonoBehaviour
             playerOnWheel = false;
     }
 
-    private void MoveTarget(GameObject platform, Vector3 dir)
+    private void RotateTarget(GameObject platform, float angle)
     {
-        platform.transform.position += dir;
+        platform.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
-
-    
 }
