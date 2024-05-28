@@ -46,10 +46,10 @@ public class PlayerMovement : MonoBehaviour
         var currEndTile = endTilesList.transform.GetChild(counter + 1).gameObject;
         counter--;
         levelCounterObj.text = counter.ToString();
-
+        
+        currEndTile.SetActive(false);
         prevEndTile.SetActive(true);
         LevelChange.LevelUp(counter); 
-        currEndTile.SetActive(false);
 
         var colliders = prevEndTile.transform.Find("colliders").gameObject;
         colliders.SetActive(false);
@@ -58,17 +58,14 @@ public class PlayerMovement : MonoBehaviour
         var endTilesTransform = prevEndTile.transform.Find("EndTiles");
         var endTiles = endTilesTransform.gameObject;
 
-        var boxCollidersEnd  = endTiles.GetComponents<BoxCollider>();
-        foreach (var boxCollider in boxCollidersEnd) boxCollider.enabled = false;
+        endTiles.SetActive(false);
+
+        //var boxCollidersEnd  = endTiles.GetComponents<BoxCollider>();
+        //foreach (var boxCollider in boxCollidersEnd) boxCollider.enabled = false;
 
         var boxCollidersStart = startTiles.GetComponents<BoxCollider>();
-        foreach (BoxCollider boxCollider in boxCollidersStart)
-        {
-            Debug.Log($"Level {prevEndTile.name}: start tiles collider state {boxCollider.enabled}");
-            boxCollider.enabled = true;
-            Debug.Log($"Level {prevEndTile.name}: start tiles collider state {boxCollider.enabled}");
+        foreach (BoxCollider boxCollider in boxCollidersStart) boxCollider.enabled = true;
 
-        }
         startTiles.GetComponent<MonoBehaviour>().enabled = true;
 
         //make the change of levels and is true as we have lost and want to go up

@@ -31,15 +31,14 @@ public class StartAgainLevel : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         Debug.Log("im here");
         glowingPlane.SetActive(true);
         player1IsStart = false;
         player2IsStart = false;
 
-        Transform countTrans = canvas.transform.Find("counter");
-        TextMeshProUGUI count = countTrans.GetComponent<TextMeshProUGUI>();
+        var count = canvas.transform.Find("counter").GetComponent<TextMeshProUGUI>();
         int.TryParse(count.text, out counter);
         
         canvas.SetActive(false);
@@ -47,6 +46,7 @@ public class StartAgainLevel : MonoBehaviour
         var parentTransform = transform.parent;
         colliders = parentTransform.Find("colliders").gameObject;
         endTilesObj = parentTransform.Find("EndTiles").gameObject;
+        //endTilesObj.SetActive(false);
         if (counter != -1)
         {
             InitializeSpecialTiles(0, out movingObjs1, out crackedObjs1, out buttonObjs1, out pressureObjs1);
@@ -115,11 +115,11 @@ public class StartAgainLevel : MonoBehaviour
                 
             var boxCollidersStart = GetComponents<BoxCollider>();
             foreach (var boxCollider in boxCollidersStart) boxCollider.enabled = false;
-            if(counter != -1)
-            {            
-                ChangeAllColliders(true);
+            
+            if(counter != -1) ChangeAllColliders(true);
+            
+            endTilesObj.SetActive(true);
 
-            }
             enabled = false;
 
         }
