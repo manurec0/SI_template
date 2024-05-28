@@ -23,7 +23,7 @@ public class PlayerPosition : MonoBehaviour
         Paco2.text = DebugPos2.ToString();
         int.TryParse(levelCounterObj.text, out int counter);
 
-        levelMsg.text = "Level: " + (counter + 1).ToString();
+        levelMsg.text = "Level: " + (counter + 1);
 
     }
 }
