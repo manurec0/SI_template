@@ -34,9 +34,10 @@ public class EndLevel : MonoBehaviour
     {
         if (player1IsEnd && player2IsEnd)
         {
+            if (counter == -1) glowingPlane.SetActive(false);
+
             if (nextEndTile)
             {
-                if (counter == 0) glowingPlane.SetActive(false);
                 nextEndTile.SetActive(true);
                 Debug.Log($"{counter} {currEndTile.name} potato");
                 counter++;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StartAgainLevel : MonoBehaviour
@@ -9,9 +10,11 @@ public class StartAgainLevel : MonoBehaviour
     private bool player2IsStart;
 
     public GameObject canvas;
-    public GameObject message;
+    public GameObject glowingPlane;
     public GameObject level; //level path to disable colliders of moving and cracked tiles
-
+    
+    private Material planeMaterial;
+    private int counter;
     private GameObject colliders;
     private GameObject endTilesObj;
 
@@ -30,22 +33,30 @@ public class StartAgainLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        message.SetActive(true);
-        canvas.SetActive(false);
-
+        glowingPlane.SetActive(true);
         player1IsStart = false;
         player2IsStart = false;
 
+        Transform countTrans = canvas.transform.Find("counter");
+        TextMeshProUGUI count = countTrans.GetComponent<TextMeshProUGUI>();
+        int.TryParse(count.text, out counter);
+        
+        canvas.SetActive(false);
         //initialize the gameObjects
-        var parentTransform = transform.parent; 
+        var parentTransform = transform.parent;
         colliders = parentTransform.Find("colliders").gameObject;
         endTilesObj = parentTransform.Find("EndTiles").gameObject;
+        if (counter != -1)
+        {
+            InitializeSpecialTiles(0, out movingObjs1, out crackedObjs1, out buttonObjs1, out pressureObjs1);
+            InitializeSpecialTiles(1, out movingObjs2, out crackedObjs2, out buttonObjs2, out pressureObjs2);
 
-        InitializeSpecialTiles(0, out movingObjs1, out crackedObjs1, out buttonObjs1, out pressureObjs1);
-        InitializeSpecialTiles(1, out movingObjs2, out crackedObjs2, out buttonObjs2, out pressureObjs2);
+            //disable the colliders
+            ChangeAllColliders(false);
+        }
+        planeMaterial = glowingPlane.GetComponent<Renderer>().material;
 
-        //disable the colliders
-        ChangeAllColliders(false);
+        StartCoroutine(GlowEffect());
 
 
     }
@@ -97,15 +108,17 @@ public class StartAgainLevel : MonoBehaviour
             colliders.SetActive(true);
             var boxCollidersEnd = endTilesObj.GetComponents<BoxCollider>();
             foreach (var boxCollider in boxCollidersEnd) boxCollider.enabled = true;
-            
-            message.SetActive(false);
+                
+            glowingPlane.SetActive(false);
             canvas.SetActive(true);
-            
+                
             var boxCollidersStart = GetComponents<BoxCollider>();
             foreach (var boxCollider in boxCollidersStart) boxCollider.enabled = false;
+            if(counter != -1)
+            {            
+                ChangeAllColliders(true);
 
-            ChangeAllColliders(true);
-
+            }
             enabled = false;
 
         }
@@ -156,4 +169,32 @@ public class StartAgainLevel : MonoBehaviour
         return childObjects;
     }
 
+    private IEnumerator GlowEffect()
+    {
+        Color red = new Color(1, 0, 0, 0.2f); 
+        Color black = new Color(0, 0, 0, 0.2f); 
+        float duration = 2.0f; 
+        
+        while (true)
+        {
+            if (!glowingPlane.activeInHierarchy)
+            {
+                yield break; 
+            }
+            yield return LerpColor(planeMaterial.color, red, duration);
+            yield return LerpColor(red, black, duration);
+        }
+    }
+
+    private IEnumerator LerpColor(Color startColor, Color endColor, float duration)
+    {
+        float time = 0;
+        while (time < duration)
+        {
+            planeMaterial.color = Color.Lerp(startColor, endColor, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        planeMaterial.color = endColor;
+    }
 }
