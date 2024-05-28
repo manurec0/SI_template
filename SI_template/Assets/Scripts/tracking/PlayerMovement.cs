@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
         //initialize the Global counter
         counter = -1;
         levelCounterObj.text = counter.ToString();
+        LevelChange.LevelUp(counter);
+
     }
 
 

@@ -12,7 +12,7 @@ public class EndLevel : MonoBehaviour
     public GameObject nextEndTile;
 
     public TextMeshProUGUI levelCounterObj;
-    private int counter;
+    private int counter = -1;
     
     public GameObject glowingPlane; // El plano que va a "brillar"
     private Material planeMaterial;
@@ -21,11 +21,7 @@ public class EndLevel : MonoBehaviour
 
     void Start()
     {
-        // Ensure time scale is set to 1
         Time.timeScale = 1;
-        int.TryParse(levelCounterObj.text, out counter);
-        Debug.Log($"{counter} {currEndTile.name}");
-        // Inicializar el material del plano
         if (counter == -1) 
         {
             planeMaterial = glowingPlane.GetComponent<Renderer>().material;
@@ -93,21 +89,17 @@ public class EndLevel : MonoBehaviour
 
     private IEnumerator GlowEffect()
     {
-        Color red = new Color(1, 0, 0, 0.2f); // Rojo con opacidad 0.2
-        Color black = new Color(0, 0, 0, 0.2f); // Negro con opacidad 0.2
-        float duration = 2.0f; // Duración de la transición en segundos
-
+        Color red = new Color(1, 0, 0, 0.2f); 
+        Color black = new Color(0, 0, 0, 0.2f); 
+        float duration = 2.0f; 
+        
         while (true)
         {
-            // Asegurarse de que el plano está activo
             if (!glowingPlane.activeInHierarchy)
             {
-                yield break; // Terminar la coroutine si el plano está desactivado
+                yield break; 
             }
-
-            // Interpolar del color actual al rojo
             yield return LerpColor(planeMaterial.color, red, duration);
-            // Interpolar del rojo al negro
             yield return LerpColor(red, black, duration);
         }
     }
