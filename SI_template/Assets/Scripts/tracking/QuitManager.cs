@@ -13,19 +13,9 @@ public class QuitManager : MonoBehaviour
             Application.Quit();
         }
 
-        // Example: Restart the scene when the 'R' key is pressed
         if (Input.GetKeyDown(KeyCode.R))
         {
-            RestartCurrentScene();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-    }
-
-    void RestartCurrentScene()
-    {
-        // Get the current scene name
-        string sceneName = SceneManager.GetActiveScene().name;
-        
-        // Load the scene with the same name
-        SceneManager.LoadScene(sceneName);
     }
 }
