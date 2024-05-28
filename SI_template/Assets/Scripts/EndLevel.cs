@@ -43,12 +43,12 @@ public class EndLevel : MonoBehaviour
                 nextEndTile.SetActive(true);
                 Debug.Log($"{counter} {currEndTile.name} potato");
                 counter++;
-
                 levelCounterObj.text = counter.ToString();
                 LevelChange.LevelUp(counter);
                 currEndTile.transform.GetChild(2).position = new Vector3(0, -1000, 0);
                 currEndTile.SetActive(false);
                 LevelChange.TriggerMoveObject(false, nextEndTile.transform.GetChild(2));
+
 
             }
             else

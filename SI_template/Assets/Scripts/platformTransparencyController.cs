@@ -31,7 +31,6 @@ public class platformTransparencyController : MonoBehaviour, IPlateAction
 
     private IEnumerator FadeTransition(bool toActive)
     {
-        Debug.Log("gi");
         float elapsed = 0;
         
         hideObject.SetActive(toActive);
