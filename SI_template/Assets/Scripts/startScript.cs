@@ -3,21 +3,19 @@ using UnityEngine;
 
 public class startScript : MonoBehaviour
 {
-    public GameObject glowingPlane; // El plano que va a "brillar"
+    public GameObject glowingPlane;
     private Material planeMaterial;
     private bool player1InTrigger = false;
     private bool player2InTrigger = false;
 
     void Start()
     {
-        // Inicializar el material del plano
         planeMaterial = glowingPlane.GetComponent<Renderer>().material;
         StartCoroutine(GlowEffect());
     }
 
     void Update()
     {
-        // Si ambos jugadores están en el trigger, desactivar el plano
         if (player1InTrigger && player2InTrigger)
         {
             glowingPlane.SetActive(false);
@@ -26,21 +24,22 @@ public class startScript : MonoBehaviour
 
     private IEnumerator GlowEffect()
     {
-        Color red = new Color(1, 0, 0, 0.2f); // Rojo con opacidad 0.2
-        Color black = new Color(0, 0, 0, 0.2f); // Negro con opacidad 0.2
-        float duration = 2.0f; // Duración de la transición en segundos
+        if (player1InTrigger && player2InTrigger)
+        {
+            glowingPlane.SetActive(false);
+        }
+        Color red = new Color(1, 0, 0, 0.2f);
+        Color black = new Color(0, 0, 0, 0.2f);
+        float duration = 2.0f;
 
         while (true)
         {
-            // Asegurarse de que el plano está activo
             if (!glowingPlane.activeInHierarchy)
             {
-                yield break; // Terminar la coroutine si el plano está desactivado
+                yield break;
             }
 
-            // Interpolar del color actual al rojo
             yield return LerpColor(planeMaterial.color, red, duration);
-            // Interpolar del rojo al negro
             yield return LerpColor(red, black, duration);
         }
     }
@@ -59,7 +58,6 @@ public class startScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Marcar cuando cada jugador entra en el trigger
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player 1 has entered the trigger.");
@@ -74,7 +72,6 @@ public class startScript : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        // Marcar cuando cada jugador sale del trigger
         if (other.CompareTag("Player"))
         {
             player1InTrigger = false;
