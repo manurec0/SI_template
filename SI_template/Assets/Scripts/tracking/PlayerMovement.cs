@@ -14,20 +14,14 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         //initialize the Global counter
-        counter = 0;
+        counter = -1;
         levelCounterObj.text = counter.ToString();
     }
 
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("outPath") && counter == 0) 
-        {
-            //here should be animation of death badabi badaba
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-
-        }
-        else if (other.CompareTag("outPath"))
+        if (other.CompareTag("outPath"))
         {
             TransitionLevels();
         }
