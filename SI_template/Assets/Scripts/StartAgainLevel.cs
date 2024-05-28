@@ -10,9 +10,10 @@ public class StartAgainLevel : MonoBehaviour
     private bool player2IsStart;
 
     public GameObject canvas;
-    public GameObject message;
+    public GameObject glowingPlane;
     public GameObject level; //level path to disable colliders of moving and cracked tiles
-
+    
+    private Material planeMaterial;
     private int counter;
     private GameObject colliders;
     private GameObject endTilesObj;
@@ -32,7 +33,7 @@ public class StartAgainLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        message.SetActive(true);
+        glowingPlane.SetActive(true);
         player1IsStart = false;
         player2IsStart = false;
 
@@ -53,6 +54,10 @@ public class StartAgainLevel : MonoBehaviour
             //disable the colliders
             ChangeAllColliders(false);
         }
+        planeMaterial = glowingPlane.GetComponent<Renderer>().material;
+
+        StartCoroutine(GlowEffect());
+
 
     }
 
@@ -106,7 +111,7 @@ public class StartAgainLevel : MonoBehaviour
                 var boxCollidersEnd = endTilesObj.GetComponents<BoxCollider>();
                 foreach (var boxCollider in boxCollidersEnd) boxCollider.enabled = true;
                 
-                message.SetActive(false);
+                glowingPlane.SetActive(false);
                 canvas.SetActive(true);
                 
                 var boxCollidersStart = GetComponents<BoxCollider>();
@@ -165,4 +170,32 @@ public class StartAgainLevel : MonoBehaviour
         return childObjects;
     }
 
+    private IEnumerator GlowEffect()
+    {
+        Color red = new Color(1, 0, 0, 0.2f); 
+        Color black = new Color(0, 0, 0, 0.2f); 
+        float duration = 2.0f; 
+        
+        while (true)
+        {
+            if (!glowingPlane.activeInHierarchy)
+            {
+                yield break; 
+            }
+            yield return LerpColor(planeMaterial.color, red, duration);
+            yield return LerpColor(red, black, duration);
+        }
+    }
+
+    private IEnumerator LerpColor(Color startColor, Color endColor, float duration)
+    {
+        float time = 0;
+        while (time < duration)
+        {
+            planeMaterial.color = Color.Lerp(startColor, endColor, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        planeMaterial.color = endColor;
+    }
 }
