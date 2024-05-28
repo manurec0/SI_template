@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Serialization;
 
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject manageLevels;
+    public GameObject endTilesList;
     public TextMeshProUGUI levelCounterObj;
     public int counter;
 
@@ -45,8 +46,10 @@ public class PlayerMovement : MonoBehaviour
 
     void TransitionLevels()
     {
-        Transform prevTrans = manageLevels.transform.GetChild(counter-1);
-        Transform currTrans = manageLevels.transform.GetChild(counter);
+        Debug.Log($"{counter}");
+        
+        Transform prevTrans = endTilesList.transform.GetChild(counter);
+        Transform currTrans = endTilesList.transform.GetChild(counter + 1);
         GameObject prevEndTile = prevTrans.gameObject;
         GameObject currEndTile = currTrans.gameObject;
         counter--;
