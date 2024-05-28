@@ -34,6 +34,13 @@ public class EndLevel : MonoBehaviour
 
     void Update()
     {
+
+        //DEBUGGING FUNCTION
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log("pressing B");
+            debugEndLevel();
+        }
         if (player1IsEnd && player2IsEnd)
         {
             if (counter == -1) glowingPlane.SetActive(false);
@@ -134,5 +141,11 @@ public class EndLevel : MonoBehaviour
     {
         counter = newLevel;
 
+    }
+
+    private void debugEndLevel()
+    {
+        player1IsEnd = true;
+        player2IsEnd = true;
     }
 }
