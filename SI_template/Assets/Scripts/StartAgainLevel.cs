@@ -33,6 +33,7 @@ public class StartAgainLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("im here");
         glowingPlane.SetActive(true);
         player1IsStart = false;
         player2IsStart = false;
@@ -100,7 +101,7 @@ public class StartAgainLevel : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         //both players are at the start of the level so they can restart the level
         if (player1IsStart && player2IsStart)

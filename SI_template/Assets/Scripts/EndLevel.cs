@@ -21,6 +21,8 @@ public class EndLevel : MonoBehaviour
 
     void Start()
     {
+        player1IsEnd = false;
+        player2IsEnd = false;
         Time.timeScale = 1;
         if (counter == -1) 
         {

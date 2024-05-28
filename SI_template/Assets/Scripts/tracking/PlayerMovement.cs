@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.Serialization;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -31,13 +27,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void setPosition(Vector3 pos)
+    public void SetPosition(Vector3 pos)
     {
         //swith playerIndex
         transform.position = pos;
     }
 
-    public void setRotation(Quaternion quat)
+    public void SetRotation(Quaternion quat)
     {
         Matrix4x4 mat = Matrix4x4.Rotate(quat);
         transform.localRotation = quat;
@@ -46,44 +42,34 @@ public class PlayerMovement : MonoBehaviour
 
     void TransitionLevels()
     {
-        Debug.Log($"{counter}");
-        
-        Transform prevTrans = endTilesList.transform.GetChild(counter);
-        Transform currTrans = endTilesList.transform.GetChild(counter + 1);
-        GameObject prevEndTile = prevTrans.gameObject;
-        GameObject currEndTile = currTrans.gameObject;
+        var prevEndTile = endTilesList.transform.GetChild(counter).gameObject;
+        var currEndTile = endTilesList.transform.GetChild(counter + 1).gameObject;
         counter--;
         levelCounterObj.text = counter.ToString();
 
-        //change endTiles 
         prevEndTile.SetActive(true);
-        LevelChange.LevelUp(counter); //this should reset the local variables of everything (for the end tiles prev if u fell level 1 wouldnt get updated as it was disabled lets see)
+        LevelChange.LevelUp(counter); 
         currEndTile.SetActive(false);
 
-
-        //disable colliders of the level until both players are at the start positions again
-        Transform childTransform = prevEndTile.transform.Find("colliders");
-        GameObject colliders = childTransform.gameObject;
+        var colliders = prevEndTile.transform.Find("colliders").gameObject;
         colliders.SetActive(false);
 
-        //get the start and end tiles object
-        Transform startTilesTransform = prevEndTile.transform.Find("StartTiles");
-        GameObject startTiles = startTilesTransform.gameObject;
-        Transform endTilesTransform = prevEndTile.transform.Find("EndTiles");
-        GameObject endTiles = endTilesTransform.gameObject;
+        var startTiles = prevEndTile.transform.Find("StartTiles").gameObject;
+        var endTilesTransform = prevEndTile.transform.Find("EndTiles");
+        var endTiles = endTilesTransform.gameObject;
 
-        //disable colliders end tiles
-        BoxCollider[] boxCollidersEnd  = endTiles.GetComponents<BoxCollider>();
-        foreach (BoxCollider boxCollider in boxCollidersEnd) boxCollider.enabled = false;
+        var boxCollidersEnd  = endTiles.GetComponents<BoxCollider>();
+        foreach (var boxCollider in boxCollidersEnd) boxCollider.enabled = false;
 
-        //activate colliders start tiles
-        BoxCollider[] boxCollidersStart = startTiles.GetComponents<BoxCollider>();
-        foreach (BoxCollider boxCollider in boxCollidersStart) boxCollider.enabled = true;
+        var boxCollidersStart = startTiles.GetComponents<BoxCollider>();
+        foreach (BoxCollider boxCollider in boxCollidersStart)
+        {
+            Debug.Log($"Level {prevEndTile.name}: start tiles collider state {boxCollider.enabled}");
+            boxCollider.enabled = true;
+            Debug.Log($"Level {prevEndTile.name}: start tiles collider state {boxCollider.enabled}");
 
-        //activate the script
-        Debug.Log($"{startTiles}, Level: {prevEndTile} {startTiles.GetComponent<MonoBehaviour>().enabled}");
+        }
         startTiles.GetComponent<MonoBehaviour>().enabled = true;
-        Debug.Log($"{startTiles}, Level: {prevEndTile} {startTiles.GetComponent<MonoBehaviour>().enabled}");
 
         //make the change of levels and is true as we have lost and want to go up
         currEndTile.transform.GetChild(2).position = new Vector3(0, 1000, 0);

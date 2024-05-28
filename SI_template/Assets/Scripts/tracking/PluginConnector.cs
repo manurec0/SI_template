@@ -242,7 +242,7 @@ public class PluginConnector : MonoBehaviour
                         calibratedPos += unityWorldCenter;
                     }
 
-                    players[i].GetComponent<PlayerMovement>().setPosition(calibratedPos);
+                    players[i].GetComponent<PlayerMovement>().SetPosition(calibratedPos);
                     playersPositionsText[i].text = Vector3ToString(calibratedPos);
 
                     if (enableRotation)
@@ -250,12 +250,12 @@ public class PluginConnector : MonoBehaviour
                         Quaternion playerRotation = new Quaternion(openVrOutputArr[3 + playerIndex], openVrOutputArr[4 + playerIndex], -openVrOutputArr[5 + playerIndex], openVrOutputArr[6 + playerIndex]);
                         //playersRotationsText[i].text = QuaternionToString(playerRotation);
                         playersRotationsText[i].text = VectorDirector(playerRotation);
-                        players[i].GetComponent<PlayerMovement>().setRotation(playerRotation);
+                        players[i].GetComponent<PlayerMovement>().SetRotation(playerRotation);
                     }
                 }
                 else
                 {
-                    players[i].GetComponent<PlayerMovement>().setPosition(rawPos);
+                    players[i].GetComponent<PlayerMovement>().SetPosition(rawPos);
                     playersPositionsText[i].text = Vector3ToString(rawPos);
                 }
             }
