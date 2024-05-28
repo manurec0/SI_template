@@ -40,14 +40,14 @@ public class StartAgainLevel : MonoBehaviour
         Transform countTrans = canvas.transform.Find("counter");
         TextMeshProUGUI count = countTrans.GetComponent<TextMeshProUGUI>();
         int.TryParse(count.text, out counter);
+        
+        canvas.SetActive(false);
+        //initialize the gameObjects
+        var parentTransform = transform.parent;
+        colliders = parentTransform.Find("colliders").gameObject;
+        endTilesObj = parentTransform.Find("EndTiles").gameObject;
         if (counter != -1)
         {
-            canvas.SetActive(false);
-            //initialize the gameObjects
-            var parentTransform = transform.parent;
-            colliders = parentTransform.Find("colliders").gameObject;
-            endTilesObj = parentTransform.Find("EndTiles").gameObject;
-
             InitializeSpecialTiles(0, out movingObjs1, out crackedObjs1, out buttonObjs1, out pressureObjs1);
             InitializeSpecialTiles(1, out movingObjs2, out crackedObjs2, out buttonObjs2, out pressureObjs2);
 
@@ -105,18 +105,17 @@ public class StartAgainLevel : MonoBehaviour
         //both players are at the start of the level so they can restart the level
         if (player1IsStart && player2IsStart)
         {
+            colliders.SetActive(true);
+            var boxCollidersEnd = endTilesObj.GetComponents<BoxCollider>();
+            foreach (var boxCollider in boxCollidersEnd) boxCollider.enabled = true;
+                
+            glowingPlane.SetActive(false);
+            canvas.SetActive(true);
+                
+            var boxCollidersStart = GetComponents<BoxCollider>();
+            foreach (var boxCollider in boxCollidersStart) boxCollider.enabled = false;
             if(counter != -1)
             {            
-                colliders.SetActive(true);
-                var boxCollidersEnd = endTilesObj.GetComponents<BoxCollider>();
-                foreach (var boxCollider in boxCollidersEnd) boxCollider.enabled = true;
-                
-                glowingPlane.SetActive(false);
-                canvas.SetActive(true);
-                
-                var boxCollidersStart = GetComponents<BoxCollider>();
-                foreach (var boxCollider in boxCollidersStart) boxCollider.enabled = false;
-
                 ChangeAllColliders(true);
 
             }

@@ -81,7 +81,10 @@ public class PlayerMovement : MonoBehaviour
         foreach (BoxCollider boxCollider in boxCollidersStart) boxCollider.enabled = true;
 
         //activate the script
+        Debug.Log($"{startTiles}, Level: {prevEndTile} {startTiles.GetComponent<MonoBehaviour>().enabled}");
         startTiles.GetComponent<MonoBehaviour>().enabled = true;
+        Debug.Log($"{startTiles}, Level: {prevEndTile} {startTiles.GetComponent<MonoBehaviour>().enabled}");
+
         //make the change of levels and is true as we have lost and want to go up
         currEndTile.transform.GetChild(2).position = new Vector3(0, 1000, 0);
         LevelChange.TriggerMoveObject(true, endTilesTransform);
