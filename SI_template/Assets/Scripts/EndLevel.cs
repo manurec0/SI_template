@@ -36,11 +36,12 @@ public class EndLevel : MonoBehaviour
     {
 
         //DEBUGGING FUNCTION this will not work well 
+        /*
         if (Input.GetKeyDown(KeyCode.B))
         {
             Debug.Log("pressing B");
             debugEndLevel();
-        }
+        }*/
         if (player1IsEnd && player2IsEnd)
         {
             if (counter == -1) glowingPlane.SetActive(false);
