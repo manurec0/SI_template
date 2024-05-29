@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 8162913030081376874, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 8482950853781815102, guid: b1ac302c4c135324188a93b93efd474e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
