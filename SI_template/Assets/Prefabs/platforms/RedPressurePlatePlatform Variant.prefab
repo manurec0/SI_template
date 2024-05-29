@@ -51,6 +51,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2943939681397728685, guid: d52c90ab59f2e7f45bc13b5cd645a307, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09
+      objectReference: {fileID: 0}
     - target: {fileID: 8796821735418419827, guid: d52c90ab59f2e7f45bc13b5cd645a307, type: 3}
       propertyPath: m_Name
       value: RedPressurePlatePlatform Variant

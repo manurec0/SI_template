@@ -14,11 +14,11 @@ public class HandCrankController : MonoBehaviour
     public Quaternion angle1;
     public Quaternion angle2;
 
-    public float debugRotation1;
-    public float debugRotation2;
+    //public float debugRotation1;
+    //public float debugRotation2;
 
     private Rigidbody rb;
-    private bool locked;
+    public bool locked;
 
     bool playerOnWheel;
     // Start is called before the first frame update
@@ -38,8 +38,8 @@ public class HandCrankController : MonoBehaviour
         angle = transform.rotation.eulerAngles.y;
         angle1 = Quaternion.Euler(0,0,angle);
         angle2 = Quaternion.Euler(0, 180, angle);
-        debugRotation1 = target1.transform.rotation.z;
-        debugRotation2 = target2.transform.rotation.z;
+        //debugRotation1 = target1.transform.rotation.z;
+        //debugRotation2 = target2.transform.rotation.z;
         if (playerOnWheel)
         {
             transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
@@ -50,7 +50,8 @@ public class HandCrankController : MonoBehaviour
             }
 
             else
-                locked = true;
+                //locked = true;
+                Debug.Log("stfu");
         }
         if (locked)
             target1.GetComponentInParent<BoxCollider>().enabled = false;
