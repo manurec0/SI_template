@@ -60,10 +60,7 @@ public class StartAgainLevel : MonoBehaviour
 
     void InitializeSpecialTiles(int idx, out List<GameObject> move, out List<GameObject> cracked, out List<GameObject> button, out List<GameObject> pressure)
     {
-        Debug.Log($"{level.name}: Path {idx + 1}");
         var playerPath = level.transform.GetChild(idx);
-        Debug.Log($" Path {playerPath.gameObject.name} number of children: {playerPath.childCount}");
-
         move = GetChildGameObjects(playerPath.GetChild(0));
         cracked = GetChildGameObjects(playerPath.GetChild(1));
         button = GetChildGameObjects(playerPath.GetChild(2));
