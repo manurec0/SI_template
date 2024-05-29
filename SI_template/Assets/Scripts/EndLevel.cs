@@ -35,7 +35,7 @@ public class EndLevel : MonoBehaviour
     void Update()
     {
 
-        //DEBUGGING FUNCTION
+        //DEBUGGING FUNCTION this will not work well 
         if (Input.GetKeyDown(KeyCode.B))
         {
             Debug.Log("pressing B");
@@ -48,7 +48,6 @@ public class EndLevel : MonoBehaviour
             if (nextEndTile)
             {
                 nextEndTile.SetActive(true);
-                Debug.Log($"{counter} {currEndTile.name} potato");
                 counter++;
                 levelCounterObj.text = counter.ToString();
                 LevelChange.LevelUp(counter);
@@ -145,6 +144,7 @@ public class EndLevel : MonoBehaviour
 
     private void debugEndLevel()
     {
+        //u should be modifying the position of the players if u want to skip a level
         player1IsEnd = true;
         player2IsEnd = true;
     }

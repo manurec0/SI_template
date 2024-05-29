@@ -18,7 +18,6 @@ public class StartAgainLevel : MonoBehaviour
     private GameObject colliders;
     private GameObject endTilesObj;
 
-    //if for a certain level one of the paths doesnt have a moving or cracked tile the corresponding list will be empty
     private List<GameObject> movingObjs1;
     private List<GameObject> crackedObjs1;
     private List<GameObject> buttonObjs1;
@@ -28,12 +27,9 @@ public class StartAgainLevel : MonoBehaviour
     private List<GameObject> crackedObjs2;
     private List<GameObject> buttonObjs2;
     private List<GameObject> pressureObjs2;
-    
 
-    // Start is called before the first frame update
     void OnEnable()
     {
-        Debug.Log("im here");
         glowingPlane.SetActive(true);
         player1IsStart = false;
         player2IsStart = false;
@@ -64,7 +60,10 @@ public class StartAgainLevel : MonoBehaviour
 
     void InitializeSpecialTiles(int idx, out List<GameObject> move, out List<GameObject> cracked, out List<GameObject> button, out List<GameObject> pressure)
     {
+        Debug.Log($"{level.name}: Path {idx + 1}");
         var playerPath = level.transform.GetChild(idx);
+        Debug.Log($" Path {playerPath.gameObject.name} number of children: {playerPath.childCount}");
+
         move = GetChildGameObjects(playerPath.GetChild(0));
         cracked = GetChildGameObjects(playerPath.GetChild(1));
         button = GetChildGameObjects(playerPath.GetChild(2));
