@@ -1327,7 +1327,7 @@ PrefabInstance:
     - target: {fileID: 4403321718414986231, guid: 246cff20b79d31c499fb5e625e1559e3, type: 3}
       propertyPath: actionTarget
       value: 
-      objectReference: {fileID: 1660495522}
+      objectReference: {fileID: 445167117}
     - target: {fileID: 4661656803137350007, guid: 246cff20b79d31c499fb5e625e1559e3, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3455,6 +3455,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430336077}
   m_CullTransparentMesh: 1
+--- !u!114 &445167117 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7906433315798256421, guid: f66c064541a504589a605f0e916c77a6, type: 3}
+  m_PrefabInstance: {fileID: 1994287192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d25e004fd33517499cefef374e561b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &453424529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11791,17 +11802,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658701156}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1660495522 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2108742533876375316, guid: f66c064541a504589a605f0e916c77a6, type: 3}
-  m_PrefabInstance: {fileID: 1994287192}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b601b16bc42545c49aa3dfa9083acda2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1666382598
 GameObject:
   m_ObjectHideFlags: 0
@@ -13183,7 +13183,7 @@ MonoBehaviour:
   cameras:
   - {fileID: 1243763520}
   - {fileID: 274718984}
-  enableTracking: 0
+  enableTracking: 1
   numberOfPlayers: 2
   numberOfBaseStations: 4
   screenToWorldPosTracking: 1
