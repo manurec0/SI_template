@@ -6,7 +6,6 @@ TagManager:
   tags:
   - BlendPlane0
   - BlendPlane1
-  - button_lvl_1
   - OnButton
   - outPath
   - start
