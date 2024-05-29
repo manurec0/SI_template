@@ -7517,6 +7517,7 @@ MonoBehaviour:
   endTilesList: {fileID: 1619475324}
   levelCounterObj: {fileID: 110050853}
   counter: 0
+  playerNumber: 1
 --- !u!65 &1201156745
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9192,6 +9193,7 @@ MonoBehaviour:
   endTilesList: {fileID: 1619475324}
   levelCounterObj: {fileID: 110050853}
   counter: 0
+  playerNumber: 0
 --- !u!65 &1551215561
 BoxCollider:
   m_ObjectHideFlags: 0

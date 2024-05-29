@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject endTilesList;
     public TextMeshProUGUI levelCounterObj;
     public int counter;
+    public int playerNumber;
 
     private void Start()
     {
@@ -17,6 +18,14 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Debug.Log("skip level");
+            debugEndLevel();
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -90,5 +99,10 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void debugEndLevel()
+    {
+        var pos = endTilesList.transform.GetChild(counter +1).GetChild(2).GetChild(playerNumber).GetChild(0);
+        SetPosition(pos.position);
+    }
    
 }

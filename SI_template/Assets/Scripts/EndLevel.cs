@@ -34,14 +34,6 @@ public class EndLevel : MonoBehaviour
 
     void Update()
     {
-
-        //DEBUGGING FUNCTION this will not work well 
-        /*
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("pressing B");
-            debugEndLevel();
-        }*/
         if (player1IsEnd && player2IsEnd)
         {
             if (counter == -1) glowingPlane.SetActive(false);
@@ -141,12 +133,5 @@ public class EndLevel : MonoBehaviour
     {
         counter = newLevel;
 
-    }
-
-    private void debugEndLevel()
-    {
-        //u should be modifying the position of the players if u want to skip a level
-        player1IsEnd = true;
-        player2IsEnd = true;
     }
 }
