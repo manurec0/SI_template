@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   crackedObject: {fileID: 1152447995329274193}
   hideObject: {fileID: 1368466295772541403}
-  transitionTime: 2
+  transitionTime: 1.5
   transitionSound: {fileID: 5607547094593949076}
 --- !u!1 &7825619553511539634
 GameObject:
