@@ -16,7 +16,8 @@ public class EndLevel : MonoBehaviour
     
     public GameObject glowingPlane; // El plano que va a "brillar"
     private Material planeMaterial;
-    
+
+    public GameObject endPos;
     //public bool IsMultiLevel;
 
     void Start()
@@ -52,6 +53,10 @@ public class EndLevel : MonoBehaviour
             }
             else
             {
+                currEndTile.SetActive(false);
+                endPos.SetActive(true);
+                LevelChange.TriggerMoveObject(false, currEndTile.transform.GetChild(2));
+
                 Debug.Log("Todos los niveles completados");
             }
             player1IsEnd = false;
