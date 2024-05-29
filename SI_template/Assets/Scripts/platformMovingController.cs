@@ -60,7 +60,7 @@ public class platformMovingController : MonoBehaviour, IPlateAction
         }
 
         //remove the collider fall if platform placed correctly
-        if ((transform.position - endPos).magnitude < 0.5f && playerOnButton)
+        if ((transform.position - endPos).magnitude < 0.75f && playerOnButton)
         {
             boxCollider.enabled = false;
         }
