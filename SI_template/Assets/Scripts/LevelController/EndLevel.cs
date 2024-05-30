@@ -19,7 +19,7 @@ public class EndLevel : MonoBehaviour
     
     //public bool IsMultiLevel;
 
-    void Start()
+    void OnEnable()
     {
         player1IsEnd = false;
         player2IsEnd = false;
@@ -29,6 +29,8 @@ public class EndLevel : MonoBehaviour
             planeMaterial = glowingPlane.GetComponent<Renderer>().material;
             StartCoroutine(GlowEffect());
         }
+        LevelChange.OnLevelUp += UpdateLocalCounter;
+
     }
 
 
@@ -119,10 +121,7 @@ public class EndLevel : MonoBehaviour
     }
    
 
-    void OnEnable()
-    {
-        LevelChange.OnLevelUp += UpdateLocalCounter;
-    }
+
 
     void OnDisable()
     {

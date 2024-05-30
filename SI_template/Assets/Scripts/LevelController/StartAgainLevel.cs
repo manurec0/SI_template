@@ -42,7 +42,7 @@ public class StartAgainLevel : MonoBehaviour
         var parentTransform = transform.parent;
         colliders = parentTransform.Find("colliders").gameObject;
         endTilesObj = parentTransform.Find("EndTiles").gameObject;
-        //endTilesObj.SetActive(false);
+        endTilesObj.SetActive(false);
         if (counter != -1)
         {
             InitializeSpecialTiles(0, out movingObjs1, out crackedObjs1, out buttonObjs1, out pressureObjs1);
@@ -97,7 +97,7 @@ public class StartAgainLevel : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         //both players are at the start of the level so they can restart the level
         if (player1IsStart && player2IsStart)
