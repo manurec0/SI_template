@@ -14,8 +14,6 @@ public class EndLevel : MonoBehaviour
     public TextMeshProUGUI levelCounterObj;
     private int counter = -1;
     
-    public GameObject glowingPlane; // El plano que va a "brillar"
-    private Material planeMaterial;
     public GameObject endPos;
 
     //public bool IsMultiLevel;
@@ -25,11 +23,7 @@ public class EndLevel : MonoBehaviour
         player1IsEnd = false;
         player2IsEnd = false;
         Time.timeScale = 1;
-        if (counter == -1) 
-        {
-            planeMaterial = glowingPlane.GetComponent<Renderer>().material;
-            StartCoroutine(GlowEffect());
-        }
+
         LevelChange.OnLevelUp += UpdateLocalCounter;
 
     }
@@ -39,8 +33,6 @@ public class EndLevel : MonoBehaviour
     {
         if (player1IsEnd && player2IsEnd)
         {
-            if (counter == -1) glowingPlane.SetActive(false);
-
             if (nextEndTile)
             {
                 nextEndTile.SetActive(true);
@@ -96,38 +88,6 @@ public class EndLevel : MonoBehaviour
             Debug.Log("Player 2 left the end tile");
         }
     }
-
-    private IEnumerator GlowEffect()
-    {
-        Color red = new Color(1, 0, 0, 0.2f); 
-        Color black = new Color(0, 0, 0, 0.2f); 
-        float duration = 2.0f; 
-        
-        while (true)
-        {
-            if (!glowingPlane.activeInHierarchy)
-            {
-                yield break; 
-            }
-            yield return LerpColor(planeMaterial.color, red, duration);
-            yield return LerpColor(red, black, duration);
-        }
-    }
-
-    private IEnumerator LerpColor(Color startColor, Color endColor, float duration)
-    {
-        float time = 0;
-        while (time < duration)
-        {
-            planeMaterial.color = Color.Lerp(startColor, endColor, time / duration);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        planeMaterial.color = endColor;
-    }
-   
-
-
 
     void OnDisable()
     {
