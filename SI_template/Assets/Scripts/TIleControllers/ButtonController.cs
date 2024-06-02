@@ -37,10 +37,8 @@ public class ButtonController : MonoBehaviour
 
     private void InitialState(bool activate)
     {
-        buttonState = !activate;
-        actionInterface.SetOnPause(buttonState);
-
-        if (buttonState) return;
+        buttonState = false;
+        actionInterface.SetOnPause(!activate);
         lightPlane.SetActive(false);
         actionInterface.ExecuteAction(false);
     }
