@@ -8098,19 +8098,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4293849254030069883, guid: a7d26bc7c2bef41f99c4804fa6de557a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.6870242
       objectReference: {fileID: 0}
     - target: {fileID: 4293849254030069883, guid: a7d26bc7c2bef41f99c4804fa6de557a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4293849254030069883, guid: a7d26bc7c2bef41f99c4804fa6de557a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7266346
       objectReference: {fileID: 0}
     - target: {fileID: 4293849254030069883, guid: a7d26bc7c2bef41f99c4804fa6de557a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4293849254030069883, guid: a7d26bc7c2bef41f99c4804fa6de557a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8118,7 +8118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4293849254030069883, guid: a7d26bc7c2bef41f99c4804fa6de557a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 93.21
       objectReference: {fileID: 0}
     - target: {fileID: 4293849254030069883, guid: a7d26bc7c2bef41f99c4804fa6de557a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -8676,7 +8676,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endTilesList: {fileID: 1619475324}
   levelCounterObj: {fileID: 110050853}
-  counter: 0
   playerNumber: 1
 --- !u!65 &1201156745
 BoxCollider:
@@ -10661,7 +10660,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endTilesList: {fileID: 1619475324}
   levelCounterObj: {fileID: 110050853}
-  counter: 0
   playerNumber: 0
 --- !u!65 &1551215561
 BoxCollider:
