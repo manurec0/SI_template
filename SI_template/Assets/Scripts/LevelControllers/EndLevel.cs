@@ -15,9 +15,7 @@ public class EndLevel : MonoBehaviour
     private int counter = -1;
     
     public GameObject endPos;
-
-    //public bool IsMultiLevel;
-
+    
     void OnEnable()
     {
         player1IsEnd = false;
@@ -25,9 +23,7 @@ public class EndLevel : MonoBehaviour
         Time.timeScale = 1;
 
         LevelChange.OnLevelUp += UpdateLocalCounter;
-
     }
-
 
     public void LateUpdate()
     {

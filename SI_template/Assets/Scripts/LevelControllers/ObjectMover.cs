@@ -9,17 +9,14 @@ public class ObjectMover : MonoBehaviour
 
     private void OnEnable()
     {
-        // Subscribe to the event with the direction parameter
         LevelChange.OnMoveObject += MoveObject;
     }
 
     private void OnDisable()
     {
-        // Unsubscribe from the event
         LevelChange.OnMoveObject -= MoveObject;
     }
 
-    // Method to handle the movement with direction and an additional GameObject
     private void MoveObject(bool moveUp, Transform gameObj)
     {
         
@@ -31,7 +28,6 @@ public class ObjectMover : MonoBehaviour
         StartCoroutine(AnimateMovement(transform, targetPositionSelf, gameObj, targetPositionObj, bg.transform, targetPositionBg, endBg.transform, targetPositionEndBg, moveDuration));
     }
     
-    // Coroutine to animate the movement of the objects and bg
     private IEnumerator AnimateMovement(Transform startTransform, Vector3 endPositionSelf, Transform gameObjTransform, Vector3 endPositionObj, Transform bgTransform, Vector3 endPositionBg, Transform endBgTransform, Vector3 endPositionEndBg, float duration)
     {
         float elapsedTime = 0;
