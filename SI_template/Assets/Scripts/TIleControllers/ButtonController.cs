@@ -27,9 +27,25 @@ public class ButtonController : MonoBehaviour
         buttonOn.Play();
     }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-     
-    //    actionInterface.ExecuteAction(false);
-    //}
+    private void OnEnable()
+    {
+        LevelChange.OnActivateMovingTile += InitialState;
+    }
+    
+    private void OnDisable()
+    {
+        LevelChange.OnActivateMovingTile -= InitialState;
+    }
+
+    private void InitialState(bool activate)
+    {
+        buttonState = !activate;
+        actionInterface.SetOnPause(buttonState);
+
+        if (!buttonState)
+        {
+            lightPlane.SetActive(buttonState);
+            actionInterface.ExecuteAction(buttonState);
+        }
+    }
 }

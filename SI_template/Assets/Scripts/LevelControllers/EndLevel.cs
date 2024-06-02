@@ -29,7 +29,7 @@ public class EndLevel : MonoBehaviour
     }
 
 
-    void Update()
+    public void LateUpdate()
     {
         if (player1IsEnd && player2IsEnd)
         {
@@ -42,20 +42,16 @@ public class EndLevel : MonoBehaviour
                 currEndTile.transform.GetChild(2).position = new Vector3(0, -1000, 0);
                 currEndTile.SetActive(false);
                 LevelChange.TriggerMoveObject(false, nextEndTile.transform.GetChild(2));
-
-
             }
             else
             {
                 currEndTile.SetActive(false);
                 endPos.SetActive(true);
                 LevelChange.TriggerMoveObject(false, currEndTile.transform.GetChild(2));
-
-
-                Debug.Log("Todos los niveles completados");
             }
             player1IsEnd = false;
             player2IsEnd = false;
+            enabled = false;
         }
     }
 
@@ -64,13 +60,11 @@ public class EndLevel : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             player1IsEnd = true;
-            Debug.Log("Player 1 reached the end tile");
         }
 
         if (other.CompareTag("Player2"))
         {
             player2IsEnd = true;
-            Debug.Log("Player 2 reached the end tile");
         }
     }
 
@@ -79,13 +73,11 @@ public class EndLevel : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             player1IsEnd = false;
-            Debug.Log("Player 1 left the end tile");
         }
 
         if (other.CompareTag("Player2"))
         {
             player2IsEnd = false;
-            Debug.Log("Player 2 left the end tile");
         }
     }
 

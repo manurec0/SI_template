@@ -29,6 +29,11 @@ public class platformTransparencyController : MonoBehaviour, IPlateAction
         StartCoroutine(currentTransition);
     }
 
+    public void SetOnPause(bool pause)
+    {
+        
+    }
+
     private IEnumerator FadeTransition(bool toActive)
     {
         float elapsed = 0;

@@ -11,14 +11,16 @@ public class platformMovingController : MonoBehaviour, IPlateAction
 
     private Vector3 startPos;
     private Vector3 debugCurrPos;
-    private float debugDistanceStart;
-    private float debugDistanceEnd;
+    public float debugDistanceStart;
+    public float debugDistanceEnd;
     private Vector3 currDirection;
 
     //private bool movingForward = true;
-    private bool playerOnButton = false;
-    public bool isMoving;
+    private bool playerOnButton;
+    private bool isMoving;
 
+    private bool onPause;
+    
     //Audio
     public AudioSource movingLoop;
     public AudioSource startUp;
@@ -29,6 +31,7 @@ public class platformMovingController : MonoBehaviour, IPlateAction
         startPos = transform.position;
         debugCurrPos = startPos;
         movingLoop.Play();
+        onPause = false;
 
     }
     void Update()
@@ -60,7 +63,7 @@ public class platformMovingController : MonoBehaviour, IPlateAction
         }
 
         //remove the collider fall if platform placed correctly
-        if ((transform.position - endPos).magnitude < 5f && playerOnButton)
+        if ((transform.position - endPos).magnitude < 5f && playerOnButton || onPause)
         {
             boxCollider.enabled = false;
         }
@@ -73,6 +76,7 @@ public class platformMovingController : MonoBehaviour, IPlateAction
     // Implementación de la interfaz IPlateAction
     public void ExecuteAction(bool isActive)
     {
+        
         playerOnButton = isActive; // Cambia el estado de si el jugador está presionando el botón
         if (playerOnButton)
         {
@@ -85,5 +89,10 @@ public class platformMovingController : MonoBehaviour, IPlateAction
             movingLoop.Play();
         }
         isMoving = !isMoving;
+    }
+
+    public void SetOnPause(bool pause)
+    {
+        onPause = pause;
     }
 }

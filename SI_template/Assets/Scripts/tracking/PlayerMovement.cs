@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             Debug.Log("skip level");
-            debugEndLevel();
+            DebugEndLevel();
         }
     }
 
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetPosition(Vector3 pos)
     {
-        //swith playerIndex
+        //switch playerIndex
         transform.position = pos;
     }
 
@@ -53,33 +53,34 @@ public class PlayerMovement : MonoBehaviour
     {
         var prevEndTile = endTilesList.transform.GetChild(counter).gameObject;
         var currEndTile = endTilesList.transform.GetChild(counter + 1).gameObject;
+        var endTilesTransform = prevEndTile.transform.Find("EndTiles");
+        var endTiles = endTilesTransform.gameObject;
+        endTiles.GetComponent<MonoBehaviour>().enabled = true;
+        
         counter--;
         levelCounterObj.text = counter.ToString();
-        
         currEndTile.SetActive(false);
         prevEndTile.SetActive(true);
         LevelChange.LevelUp(counter); 
-
-        var colliders = prevEndTile.transform.Find("colliders").gameObject;
-        colliders.SetActive(false);
-
-        var startTiles = prevEndTile.transform.Find("StartTiles").gameObject;
-        var endTilesTransform = prevEndTile.transform.Find("EndTiles");
-        var endTiles = endTilesTransform.gameObject;
-
-        endTiles.SetActive(false);
-
-        //var boxCollidersEnd  = endTiles.GetComponents<BoxCollider>();
-        //foreach (var boxCollider in boxCollidersEnd) boxCollider.enabled = false;
-
-        var boxCollidersStart = startTiles.GetComponents<BoxCollider>();
-        foreach (BoxCollider boxCollider in boxCollidersStart) boxCollider.enabled = true;
-
-        startTiles.GetComponent<MonoBehaviour>().enabled = true;
-
+        
         //make the change of levels and is true as we have lost and want to go up
         currEndTile.transform.GetChild(2).position = new Vector3(0, 1000, 0);
+
+        
+        if (counter != -1)
+        {
+            endTiles.SetActive(false);
+            var colliders = prevEndTile.transform.Find("colliders").gameObject;
+            colliders.SetActive(false);
+            var startTiles = prevEndTile.transform.Find("StartTiles").gameObject;
+            var boxCollidersStart = startTiles.GetComponents<BoxCollider>();
+            foreach (var boxCollider in boxCollidersStart) boxCollider.enabled = true;
+
+            startTiles.GetComponent<MonoBehaviour>().enabled = true;
+        }
+  
         LevelChange.TriggerMoveObject(true, endTilesTransform);
+
     }
 
 
@@ -98,8 +99,7 @@ public class PlayerMovement : MonoBehaviour
         counter = newLevel;
 
     }
-
-    private void debugEndLevel()
+    private void DebugEndLevel()
     {
         var pos = endTilesList.transform.GetChild(counter +1).GetChild(2).GetChild(playerNumber).GetChild(0);
         SetPosition(pos.position);

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class StartAgainLevel : MonoBehaviour
@@ -14,7 +13,6 @@ public class StartAgainLevel : MonoBehaviour
     public GameObject level; //level path to disable colliders of moving and cracked tiles
     
     private Material planeMaterial;
-    private int counter;
     private GameObject colliders;
     private GameObject endTilesObj;
 
@@ -33,17 +31,17 @@ public class StartAgainLevel : MonoBehaviour
         glowingPlane.SetActive(true);
         player1IsStart = false;
         player2IsStart = false;
-
-        var count = canvas.transform.Find("counter").GetComponent<TextMeshProUGUI>();
-        int.TryParse(count.text, out counter);
         
         canvas.SetActive(false);
         //initialize the gameObjects
         var parentTransform = transform.parent;
+        
         colliders = parentTransform.Find("colliders").gameObject;
         endTilesObj = parentTransform.Find("EndTiles").gameObject;
         endTilesObj.SetActive(false);
-        if (counter != -1)
+        //endTilesObj.GetComponent<MonoBehaviour>().enabled = true;
+
+        if (level)
         {
             InitializeSpecialTiles(0, out movingObjs1, out crackedObjs1, out buttonObjs1, out pressureObjs1);
             InitializeSpecialTiles(1, out movingObjs2, out crackedObjs2, out buttonObjs2, out pressureObjs2);
@@ -72,13 +70,11 @@ public class StartAgainLevel : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             player1IsStart = true;
-            Debug.Log("Player 1 reached the start tile");
         }
 
         if (other.CompareTag("Player2"))
         {
             player2IsStart = true;
-            Debug.Log("Player 2 reached the start tile");
         }
     }
 
@@ -87,13 +83,11 @@ public class StartAgainLevel : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             player1IsStart = false;
-            Debug.Log("Player 1 left the start tile");
         }
 
         if (other.CompareTag("Player2"))
         {
             player2IsStart = false;
-            Debug.Log("Player 2 left the start tile");
         }
     }
 
@@ -112,13 +106,19 @@ public class StartAgainLevel : MonoBehaviour
             var boxCollidersStart = GetComponents<BoxCollider>();
             foreach (var boxCollider in boxCollidersStart) boxCollider.enabled = false;
             
-            if(counter != -1) ChangeAllColliders(true);
-            
-            endTilesObj.SetActive(true);
-
+            if(level) ChangeAllColliders(true);
             enabled = false;
 
         }
+
+    }
+
+    private void OnDisable()
+    {
+        Debug.Log($": {endTilesObj.activeSelf} {endTilesObj.activeInHierarchy}");
+
+        endTilesObj.SetActive(true);
+        Debug.Log($": {endTilesObj.activeSelf} {endTilesObj.activeInHierarchy}");
 
     }
 
@@ -148,18 +148,18 @@ public class StartAgainLevel : MonoBehaviour
     {
         foreach(var obj in movingPlatList)
         {
-            obj.transform.GetChild(0).gameObject.GetComponent<MonoBehaviour>().enabled = activate;
-            obj.GetComponent<BoxCollider>().enabled = activate;
+            //do i need this next line?? idk 
+            //obj.transform.GetChild(0).gameObject.GetComponent<MonoBehaviour>().enabled = activate;
+            //obj.GetComponent<BoxCollider>().enabled = activate;
+            LevelChange.ActivateMovingTile(activate); 
+
         }
     }
     private List<GameObject> GetChildGameObjects(Transform parent)
     {
         List<GameObject> childObjects = new List<GameObject>();
-
-        // Iterate through all children of the parent object
         foreach (Transform child in parent)
         {
-            // Add each child GameObject to the list
             childObjects.Add(child.gameObject);
         }
 
