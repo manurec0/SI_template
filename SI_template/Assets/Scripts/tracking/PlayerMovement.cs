@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public TextMeshProUGUI levelCounterObj;
     private int counter;
     public int playerNumber;
+    private bool colliderDetect;
 
     private void Start()
     {
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
         counter = -1;
         levelCounterObj.text = counter.ToString();
         LevelChange.LevelUp(counter);
+        colliderDetect = true;
     }
 
     void Update()
@@ -24,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("outPath")) TransitionLevels();
+        if (other.CompareTag("outPath") && colliderDetect) TransitionLevels();
     }
 
 
@@ -80,17 +82,26 @@ public class PlayerMovement : MonoBehaviour
     void OnEnable()
     {
         LevelChange.OnLevelUp += UpdateLocalCounter;
+        LevelChange.OnColliderDetect += SetColliderDetect;
+        
     }
 
     void OnDisable()
     {
         LevelChange.OnLevelUp -= UpdateLocalCounter;
+        LevelChange.OnColliderDetect -= SetColliderDetect;
+
     }
 
     private void UpdateLocalCounter(int newLevel)
     {
         counter = newLevel;
 
+    }
+
+    private void SetColliderDetect()
+    {
+        colliderDetect = !colliderDetect;
     }
     private void DebugEndLevel()
     {

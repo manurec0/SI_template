@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class QuitManager : MonoBehaviour
 {
-
     // Update is called once per frame
     void Update()
     {
@@ -17,5 +16,11 @@ public class QuitManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            LevelChange.ColliderDetect();
+        }
+            
     }
 }
