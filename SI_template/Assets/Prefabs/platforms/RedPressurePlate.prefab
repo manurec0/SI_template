@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8796821735418419827, guid: d52c90ab59f2e7f45bc13b5cd645a307, type: 3}
       propertyPath: m_Name
-      value: RedPressurePlatePlatform Variant
+      value: RedPressurePlate
       objectReference: {fileID: 0}
     - target: {fileID: 9155626552676598814, guid: d52c90ab59f2e7f45bc13b5cd645a307, type: 3}
       propertyPath: m_Materials.Array.data[0]

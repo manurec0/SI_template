@@ -39,6 +39,7 @@ public class EndLevel : MonoBehaviour
                 counter++;
                 levelCounterObj.text = counter.ToString();
                 LevelChange.LevelUp(counter);
+                Debug.Log($"Current level: {counter + 1}");
                 currEndTile.transform.GetChild(2).position = new Vector3(0, -1000, 0);
                 currEndTile.SetActive(false);
                 LevelChange.TriggerMoveObject(false, nextEndTile.transform.GetChild(2));

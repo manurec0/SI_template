@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public GameObject endTilesList;
     public TextMeshProUGUI levelCounterObj;
-    public int counter;
+    private int counter;
     public int playerNumber;
 
     private void Start()
@@ -15,24 +15,16 @@ public class PlayerMovement : MonoBehaviour
         counter = -1;
         levelCounterObj.text = counter.ToString();
         LevelChange.LevelUp(counter);
-
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log("skip level");
-            DebugEndLevel();
-        }
+        if (Input.GetKeyDown(KeyCode.B)) DebugEndLevel();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("outPath"))
-        {
-            TransitionLevels();
-        }
+        if (other.CompareTag("outPath")) TransitionLevels();
     }
 
 
@@ -62,10 +54,11 @@ public class PlayerMovement : MonoBehaviour
         currEndTile.SetActive(false);
         prevEndTile.SetActive(true);
         LevelChange.LevelUp(counter); 
+        Debug.Log($"Current level: {counter + 1}");
+
         
         //make the change of levels and is true as we have lost and want to go up
         currEndTile.transform.GetChild(2).position = new Vector3(0, 1000, 0);
-
         
         if (counter != -1)
         {

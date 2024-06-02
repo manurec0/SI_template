@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ButtonController : MonoBehaviour
@@ -42,10 +40,8 @@ public class ButtonController : MonoBehaviour
         buttonState = !activate;
         actionInterface.SetOnPause(buttonState);
 
-        if (!buttonState)
-        {
-            lightPlane.SetActive(buttonState);
-            actionInterface.ExecuteAction(buttonState);
-        }
+        if (buttonState) return;
+        lightPlane.SetActive(false);
+        actionInterface.ExecuteAction(false);
     }
 }
