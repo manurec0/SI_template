@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             startTiles.GetComponent<MonoBehaviour>().enabled = true;
         }
   
-        LevelChange.TriggerMoveObject(true, endTilesTransform);
+        LevelChange.TriggerMoveObject(true, endTilesTransform, null);
 
     }
 

@@ -32,19 +32,20 @@ public class EndLevel : MonoBehaviour
             if (nextEndTile)
             {
                 nextEndTile.SetActive(true);
+                nextEndTile.transform.GetChild(0).gameObject.SetActive(false);
                 counter++;
                 levelCounterObj.text = counter.ToString();
                 LevelChange.LevelUp(counter);
                 Debug.Log($"Current level: {counter + 1}");
                 currEndTile.transform.GetChild(2).position = new Vector3(0, -1000, 0);
                 currEndTile.SetActive(false);
-                LevelChange.TriggerMoveObject(false, nextEndTile.transform.GetChild(2));
+                LevelChange.TriggerMoveObject(false, nextEndTile.transform.GetChild(2), nextEndTile);
             }
             else
             {
                 currEndTile.SetActive(false);
                 endPos.SetActive(true);
-                LevelChange.TriggerMoveObject(false, currEndTile.transform.GetChild(2));
+                LevelChange.TriggerMoveObject(false, currEndTile.transform.GetChild(2), null);
             }
             player1IsEnd = false;
             player2IsEnd = false;
@@ -78,10 +79,11 @@ public class EndLevel : MonoBehaviour
         }
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         LevelChange.OnLevelUp -= UpdateLocalCounter;
     }
+    
 
     private void UpdateLocalCounter(int newLevel)
     {

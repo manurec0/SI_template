@@ -17,7 +17,7 @@ public class ObjectMover : MonoBehaviour
         LevelChange.OnMoveObject -= MoveObject;
     }
 
-    private void MoveObject(bool moveUp, Transform gameObj)
+    private void MoveObject(bool moveUp, Transform gameObj, GameObject nextEnd)
     {
         
         Vector3 targetPositionSelf = transform.position + new Vector3(0, moveUp ? 1000 : -1000, 0);
@@ -26,8 +26,16 @@ public class ObjectMover : MonoBehaviour
         Vector3 targetPositionEndBg = endBg.transform.position + new Vector3(0, moveUp ? 1000 : -1000, 0);
 
         StartCoroutine(AnimateMovement(transform, targetPositionSelf, gameObj, targetPositionObj, bg.transform, targetPositionBg, endBg.transform, targetPositionEndBg, moveDuration));
+        if (nextEnd) StartCoroutine(ActivateColliders(nextEnd));
+
     }
     
+    private IEnumerator ActivateColliders(GameObject next)
+    {
+        yield return new WaitForSeconds(2f);
+        next.transform.GetChild(0).gameObject.SetActive(true);
+
+    }
     private IEnumerator AnimateMovement(Transform startTransform, Vector3 endPositionSelf, Transform gameObjTransform, Vector3 endPositionObj, Transform bgTransform, Vector3 endPositionBg, Transform endBgTransform, Vector3 endPositionEndBg, float duration)
     {
         float elapsedTime = 0;
