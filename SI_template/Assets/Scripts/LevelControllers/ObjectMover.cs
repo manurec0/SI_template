@@ -3,9 +3,10 @@ using System.Collections;
 
 public class ObjectMover : MonoBehaviour
 {
-    public float moveDuration = 2f; // Duration of the animation
+    public float moveDuration = 2f;
     public GameObject bg;
     public GameObject endBg;
+    public GameObject fog;
 
     private void OnEnable()
     {
@@ -19,31 +20,30 @@ public class ObjectMover : MonoBehaviour
 
     private void MoveObject(bool moveUp, Transform gameObj, GameObject nextEnd)
     {
-        
         Vector3 targetPositionSelf = transform.position + new Vector3(0, moveUp ? 1000 : -1000, 0);
         Vector3 targetPositionObj = gameObj.position + new Vector3(0, moveUp ? 1000 : -1000, 0);
         Vector3 targetPositionBg = bg.transform.position + new Vector3(0, moveUp ? 100 : -100, 0);
         Vector3 targetPositionEndBg = endBg.transform.position + new Vector3(0, moveUp ? 1000 : -1000, 0);
+        Vector3 targetPositionFog = fog.transform.position + new Vector3(0, moveUp ? 1000 : -1000, 0);
 
-        StartCoroutine(AnimateMovement(transform, targetPositionSelf, gameObj, targetPositionObj, bg.transform, targetPositionBg, endBg.transform, targetPositionEndBg, moveDuration));
+        StartCoroutine(AnimateMovement(transform, targetPositionSelf, gameObj, targetPositionObj, bg.transform, targetPositionBg, endBg.transform, targetPositionEndBg, fog.transform, targetPositionFog, moveDuration));
         if (nextEnd) StartCoroutine(ActivateColliders(nextEnd));
-
     }
-    
+
     private IEnumerator ActivateColliders(GameObject next)
     {
         yield return new WaitForSeconds(2f);
         next.transform.GetChild(0).gameObject.SetActive(true);
-
     }
-    private IEnumerator AnimateMovement(Transform startTransform, Vector3 endPositionSelf, Transform gameObjTransform, Vector3 endPositionObj, Transform bgTransform, Vector3 endPositionBg, Transform endBgTransform, Vector3 endPositionEndBg, float duration)
+
+    private IEnumerator AnimateMovement(Transform startTransform, Vector3 endPositionSelf, Transform gameObjTransform, Vector3 endPositionObj, Transform bgTransform, Vector3 endPositionBg, Transform endBgTransform, Vector3 endPositionEndBg, Transform fogTransform, Vector3 endPositionFog, float duration)
     {
         float elapsedTime = 0;
-
         Vector3 startPositionSelf = startTransform.position;
         Vector3 startPositionObj = gameObjTransform.position;
         Vector3 startPositionBg = bgTransform.position;
         Vector3 startPositionEndBg = endBgTransform.position;
+        Vector3 startPositionFog = fogTransform.position;
 
         while (elapsedTime < duration)
         {
@@ -52,6 +52,15 @@ public class ObjectMover : MonoBehaviour
             gameObjTransform.position = Vector3.Lerp(startPositionObj, endPositionObj, t);
             bgTransform.position = Vector3.Lerp(startPositionBg, endPositionBg, t);
             endBgTransform.position = Vector3.Lerp(startPositionEndBg, endPositionEndBg, t);
+            fogTransform.position = Vector3.Lerp(startPositionFog, endPositionFog, t);
+
+            // Si la posición de 'endBg' cruza y = 0 o si 'fog' cruza y = 100, desactivar ambos
+            if (endBgTransform.position.y == 0 && fog.activeSelf)
+            {
+                fog.SetActive(false);
+                bg.SetActive(false);
+            }
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -60,5 +69,6 @@ public class ObjectMover : MonoBehaviour
         gameObjTransform.position = endPositionObj;
         bgTransform.position = endPositionBg;
         endBgTransform.position = endPositionEndBg;
+        fogTransform.position = endPositionFog;
     }
 }
